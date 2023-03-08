@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+  <script type="text/javascript" th:src="@{/js/dx.all.js}"></script>
+  <script type="text/javascript" th:src="@{/js/leeni_dxchart.js}"></script>
+  <script type="text/javascript" th:src="@{/js/leeni_dxdatagrid.js}"></script>
+  <script type="text/javascript" th:src="@{/js/leeni_dxCircularGauge.js}"></script>
+  <script type="text/javascript" th:src="@{/js/leeni_dxPieChart.js}"></script>
+  <script type="text/javascript" th:src="@{/js/home.js}"></script>
+
+  <link th:href="@{/css/dx.light.css}" rel="stylesheet" >
+  <link th:href="@{/css/home.css}" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<script th:inline="javascript">
+  window.onload = function (){
+    let datagrid = new dxdatagrid();
+
+    const columns = ['a', 'b', 'c', 'd', 'e', 'f', 'g','h','i','l'];
+    const captions = ['순번','통신방식','스캔주기' ,'제조사' ,'모델' ,'디바이스ID' ,'서버IP','PORT','펌웨이버전','사용여부']
+    datagrid.setColumns(columns);
+    datagrid.setCaptions(captions);
+
+    const dataSource_grid = [
+      {
+        "a":  19,
+        "b": 8,
+        "c": "2023-01-03 17:54:59",
+        "d": "ㅇㄴㄹㅇㄴㄹ",
+        "e": "ㅇㄴㄹㅇㄴㄹㅇㄴ",
+        "f": "ㄹㅇ ㄴㄹㄴㅇㄹ",
+        "g": 64,
+        "h":"",
+        "i:":"",
+        "l":""
+      }];
+
+    datagrid.setDataSource(dataSource_grid);
+    datagrid.setKeyExpr('IDX');
+
+    const dxGrid = $('#gridRtu').dxDataGrid(datagrid).dxDataGrid('instance');
+  }
+
+</script>
+<body>
+<div class="container">
+  <div style="background: #E6E6E6; height: 50px; display: flex; flex-direction: row; justify-content: space-between;">
+    <div><h1><a href="http://localhost:8080/">ECO Platform</a></h1></div>
+    <div style="display: flex; align-items: center;">
+      <div>2023.02.09 15:07 맑음 -2도 사업그룹/현장명</div>
+      <select>
+        <option value="">1태양광발전소</option>
+        <option value="">2태양광발전소</option>
+        <option value="">3태양광발전소</option>
+      </select>
+      <div>사용자명</div>
+    </div>
+  </div>
+
+  <div style="display: flex;">
+    <div style="background: #E6E6E6; width: 10%; height: 1600px;">
+      <div>
+        <h1 style="padding: 20px 20px; color: black;">xEMS</h1>
+        <ul>
+          <li class="make-li"><button type="button" th:text="대시보드" th:onclick="|location.href='@{http://localhost:8080/}'|"></button></li>
+          <li class="make-li"><button type="button" th:text="계통도" th:onclick="|location.href='@{http://localhost:8080/familyTree}'|"></button></li>
+          <li class="make-li"><button type="button" th:text="인버터" th:onclick="|location.href='@{http://localhost:8080/invert}'|"></button></li>
+          <li class="make-li"><button type="button" th:text="접속함" th:onclick="|location.href='@{http://localhost:8080/chStatus}'|"></button></li>
+          <li class="make-li"><button type="button" th:text="트랜드" th:onclick="|location.href='@{http://localhost:8080/trend}'|"></button></li>
+          <li class="make-li"><button type="button" th:text="보고서" th:onclick="|location.href='@{http://localhost:8080/report}'|"></button></li>
+          <li class="make-li"><button type="button" th:text="알람" th:onclick="|location.href='@{http://localhost:8080/alarm}'|"></button></li>
+          <li class="make-li"><button type="button" th:text="설정" th:onclick="|location.href='@{http://localhost:8080/setting}'|"></button></li>
+          <li class="make-li"><button type="button" th:text="고객센터" th:onclick="|location.href='@{http://localhost:8080/csCenter}'|"></button></li>
+        </ul>
+      </div>
+      <div style="margin-top: 500px;">
+        <div>발전용량</div>
+        <div>999.75 KWp</div>
+        <div>금일발전량</div>
+        <div>20968.0 KWp</div>
+      </div>
+    </div>
+
+    <!-- 컨텐츠영역 시작 -->
+  <div>
+    <ul>
+      <li><button type="button" th:text="발전소설정" th:onclick="|location.href='@{http://localhost:8080/setting}'|"></button></li>
+      <li><button type="button" th:text="사용자계정" th:onclick="|location.href='@{http://localhost:8080/userSetting}'|"></button></li>
+      <li><button type="button" th:text="RTU" th:onclick="|location.href='@{http://localhost:8080/RTU}'|"></button></li>
+    </ul>
+    <div>
+      <input type="text" th:placeholder="검색어"><button type="button" th:text="검색" th:onclick="search()"></button>
+    </div>
+  </div>
+    <div id="gridContainer"></div>
+  </div>
+</div>
+    </body>
+    </html>
