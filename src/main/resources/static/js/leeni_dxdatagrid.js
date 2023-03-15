@@ -126,8 +126,8 @@ dxdatagrid.prototype.setEditingForm = function(dataField, colCount, colSpan, cap
  * https://js.devexpress.com/Documentation/ApiReference/UI_Components/dxDataGrid/Configuration/columns/
  */
 dxdatagrid.prototype.setColumns = function(columns) {
-	columns.forEach(function(column) {
-						this.columns.push( { dataField: column } );
+	columns.forEach(function(name, type) {
+						this.columns.push( { dataField: name, dataType: type } );
 					}, this);
 };
 
@@ -208,6 +208,16 @@ dxdatagrid.prototype.onClickToolbar = function(dxGrid, onEvt) {
 dxdatagrid.prototype.setOnRowClick = function(onEvt) {
 	this.onRowClick = onEvt;
 };
+
+/**
+ * datagrid의 행 더블클릭 이벤트 처리
+ * data type은 object이다. ex) onEvt = onRowDblClick;
+ * https://js.devexpress.com/Documentation/ApiReference/UI_Components/dxDataGrid/Configuration/#onRowDblClick
+ */
+dxdatagrid.prototype.setOnRowDblClick = function(onEvt) {
+	this.onRowDblClick = onEvt;
+};
+
 
 /**
  * datagrid의 update 기능이다.
@@ -376,6 +386,10 @@ dxdatagrid.prototype.setWidth = function(dataField, width) {
 		
 		this.columns[i].width = width;
 	}
+};
+
+dxdatagrid.prototype.setOnCellPrepared = function(onEvt) {
+	this.onCellPrepared = onEvt;
 };
 
 

@@ -117,3 +117,24 @@ dxchart.prototype.setSeries = function(valueField, name, color) {
 	console.log(this.series);
 
 };
+// 추가로 필요한것
+/*
+chart의 확대 시의 스크롤바의 유무를 지정
+visible = 'true' or 'false'
+*/
+dxchart.prototype.setScrollBar = function(visible){
+	this.scrollBar = {};
+	this.scrollBar.visible = visible;
+}
+
+/*
+chart의 줌의 속성을 지정
+argumentAxis = 가로대상의 중, valueAxis = 세로대상의 줌을 지원한다
+값은 'zoom' 줌 'pan' 드래그 'none' 없음 'both' 둘다
+	https://js.devexpress.com/Documentation/Guide/UI_Components/Chart/Zooming_and_Panning/
+*/
+dxchart.prototype.setZoomAndPan = function(argumentAxis,valueAxis){
+	this.zoomAndPan = {};
+	this.zoomAndPan.argumentAxis = argumentAxis;
+	this.zoomAndPan.valueAxis = valueAxis;
+}

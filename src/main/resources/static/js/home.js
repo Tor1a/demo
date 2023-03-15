@@ -1,10 +1,10 @@
 
     $( document ).ready(function() {
 
-// // dxdatagrid 부분----------------------------------------------
+ // dxdatagrid 부분----------------------------------------------
     let datagrid = new dxdatagrid();
 
-    let bowl = [['등록', false, false, true, 'edit', onChoiceUpdate],['선택삭제', false, true, true, 'trash', onChoiceDelete]];
+    let bowl = [['선택삭제', false, true, true, 'trash', onChoiceDelete]];
     let num = bowl.length;
 
     datagrid.setToolbar(
@@ -514,6 +514,36 @@
 
 
 }); // ready 함수 끝
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     function onChoiceUpdate(dxGrid) {

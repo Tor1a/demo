@@ -36,11 +36,11 @@ public class homeController {
     }
     @GetMapping("/setting")
     public String setting(){
-        return "setting";
+        return "powerPlantsStting";
     }
-    @GetMapping("/csCenter")
+    @GetMapping("/csCenter2")
     public String csCenter(){
-        return "csCenter";
+        return "csCenter2";
     }
 
     @GetMapping("/userSetting")

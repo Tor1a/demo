@@ -7,43 +7,15 @@
   <script type="text/javascript" th:src="@{/js/leeni_dxdatagrid.js}"></script>
   <script type="text/javascript" th:src="@{/js/leeni_dxCircularGauge.js}"></script>
   <script type="text/javascript" th:src="@{/js/leeni_dxPieChart.js}"></script>
-  <script type="text/javascript" th:src="@{/js/home.js}"></script>
+  <script type="text/javascript" th:src="@{/js/powerPlantsStting.js}"></script>
 
   <link th:href="@{/css/dx.light.css}" rel="stylesheet" >
+  <link th:href="@{/css/layer_popup.css}" rel="stylesheet" >
   <link th:href="@{/css/home.css}" rel="stylesheet">
   <meta charset="UTF-8">
   <title>Title</title>
 </head>
-<script th:inline="javascript">
-  window.onload = function (){
-    let datagrid = new dxdatagrid();
 
-    const columns = ['a', 'b', 'c', 'd', 'e', 'f', 'g','h','i','l'];
-    const captions = ['순번','통신방식','스캔주기' ,'제조사' ,'모델' ,'디바이스ID' ,'서버IP','PORT','펌웨이버전','사용여부']
-    datagrid.setColumns(columns);
-    datagrid.setCaptions(captions);
-
-    const dataSource_grid = [
-      {
-        "a":  19,
-        "b": 8,
-        "c": "2023-01-03 17:54:59",
-        "d": "ㅇㄴㄹㅇㄴㄹ",
-        "e": "ㅇㄴㄹㅇㄴㄹㅇㄴ",
-        "f": "ㄹㅇ ㄴㄹㄴㅇㄹ",
-        "g": 64,
-        "h":"",
-        "i:":"",
-        "l":""
-      }];
-
-    datagrid.setDataSource(dataSource_grid);
-    datagrid.setKeyExpr('IDX');
-
-    const dxGrid = $('#gridRtu').dxDataGrid(datagrid).dxDataGrid('instance');
-  }
-
-</script>
 <body>
 <div class="container">
   <div style="background: #E6E6E6; height: 50px; display: flex; flex-direction: row; justify-content: space-between;">
@@ -94,7 +66,90 @@
       <input type="text" th:placeholder="검색어"><button type="button" th:text="검색" th:onclick="search()"></button>
     </div>
   </div>
-    <div id="gridContainer"></div>
+    <div id="gridSetting"></div>
+  </div>
+</div>
+
+<!-- 팝업-->
+<div class="popup_layer" id="popup_layer" style="display: none;">
+  <div class="popup_box">
+    <div><h2>발전소 설정 정보 수정</h2></div>
+    <!--팝업 컨텐츠 영역-->
+    <div class="popup_cont">
+      <table>
+        <tbody>
+            <td>사업현장:
+              <select id="ppSite">
+                <option>전체</option>
+              </select>
+            </td>
+          <tr>
+            <td>종류:
+              <select id="ppType">
+                <option>전체</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>발전소명:
+              <input type="text" id="" >
+            </td>
+          </tr>
+          <tr>
+            <td>발전주소지:
+              <input type="text" value="">
+            </td>
+          </tr>
+         <tr>
+           <td>모듈
+             <select>
+               <option>전체</option>
+             </select>
+             <select>
+               <option>전체</option>
+             </select>
+             <span>수량: <input type="text" value=""></span>
+           </td>
+         </tr>
+        <tr>
+          <td>
+            <span>발전용량: <input type="text" value=""></span>
+          </td>
+        </tr>
+            <tr>
+              <td>모듈
+                <select>
+                  <option>전체</option>
+                </select>
+                <select>
+                  <option>전체</option>
+                </select>
+                <span>수량: <input type="text" value=""></span>
+              </td>
+            </tr>
+        <tr>
+          <td><input type="date"></td>
+          <td><input type="date"></td>
+          <td><input type="date">/td>
+          <td><select>
+            <option>전체</option>
+        </select></td>
+          <td><select>
+            <option>전체</option>
+          </select></td>
+          <td><select>
+            <option>전체</option>
+          </select></td>
+        </tr>
+        </tbody>
+      </table>
+
+    </div>
+    <!--팝업 버튼 영역-->
+    <div>
+      <button onclick="ppUpdate();">수정</button>
+      <button onclick="javascript:closePop();">닫기</button>
+    </div>
   </div>
 </div>
     </body>

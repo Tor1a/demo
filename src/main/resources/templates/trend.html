@@ -8,19 +8,133 @@
   <script type="text/javascript" th:src="@{/js/leeni_dxCircularGauge.js}"></script>
   <script type="text/javascript" th:src="@{/js/leeni_dxPieChart.js}"></script>
   <script type="text/javascript" th:src="@{/js/home.js}"></script>
-
+<script type="text/javascript" th:src="@{/js/data.js}"></script>
+<script type="text/javascript" th:src="@{/js/leeni_dxchart.js}"></script>
   <link th:href="@{/css/dx.light.css}" rel="stylesheet" >
   <link th:href="@{/css/home.css}" rel="stylesheet">
   <meta charset="UTF-8">
   <title>Title</title>
-</head>
-<script th:inline="javascript">
-  window.onload = function (){
-    console.log("ready");
-  }
 
+<script th:inline="javascript">
+	let chartTrend = new dxchart();
+	chartTrend.setDataSource(data);
+	
+	chartTrend.setCommonSeriesSettings(3,'day','bar');
+	chartTrend.setSeries(['t'],['발전량'],['']);
+	chartTrend.setTitle('발전량(kWh)');
+	chartTrend.setTooltip('true');
+	chartTrend.setScrollBar('true');
+	chartTrend.setZoomAndPan('both', 'pan');
+	function sb(){
+		const type = $('select[name="type"]').val();
+		const div = $('select[name="div"]').val();
+		const daily = $('select[name="daily').val();
+		const unit = $('select[name="unit"]').val();
+		const startDay = new Date($("#startDay").val());
+		const endDay =  new Date($("#endDay").val());
+		endDay.setHours(23);
+		endDay.setMinutes(59);
+		endDay.setSeconds(59);
+		
+		if(new Date(startDay) > new Date(endDay)){
+			$('#startDay')[0].value = endDay;
+			alert("시작시간이 끝시간을 넘을수 없습니다.");
+			return null;
+		}
+		
+		// acb나 vcb일때 장비 구분 잠그기
+		if($('select[name="type"]').val() == "acb"){
+			$('select[name="div"] option[value=acb]').prop('selected', 'selected');
+			$('select[name="div"]').prop('disabled', 'disabled');
+		}else if($('select[name="type"]').val() == "vcb"){
+			$('select[name="div"] option[value=vcb]').prop('selected', 'selected');
+			$('select[name="div"]').prop('disabled', 'disabled');
+		}else{
+			$('select[name="div"]').prop('disabled', false);
+		}
+		
+		
+		$('#chart').dxChart({dataSource: data2});	
+		console.log("장비종류: " + type, ",장비구분 :" + div + ", 보고서:" + daily + ", 자료형태: "+ unit + ", 시작날짜: " + startDay + ", 끝날짜: " + endDay);
+		
+}
+
+	$(window).resize(function () {
+		var height_size = window.outerHeight;
+		var mapResize = document.getElementById("chart");
+		mapResize.style.height = height_size - 300 + "px";
+	});
+	
+	
+$(() => {
+	document.getElementById('endDay').value = new Date().toISOString().substring(0, 10);
+
+	
+	var height_size = window.outerHeight;
+	var mapResize = document.getElementById("chart");
+	mapResize.style.height = height_size - 300 + "px";	
+
+	$('#chart').dxChart(chartTrend);
+
+/*
+
+  $('#chart').dxChart({
+    title: '발전량(kWh)',
+    size: {
+		height: height_size / 10 * 6
+    },
+    scrollBar: {
+      visible: true,
+    },
+    zoomAndPan: {
+		argumentAxis: 'both',
+		valueAxis: "pan"
+    },
+    series: {
+      argumentField: 'day',
+      valueField: 't',
+      type: 'bar',
+    },tooltip: {
+      enabled: true,
+	customizeTooltip(arg) {
+		return {
+				text: `${arg.argumentText}
+				${arg.valueText}kWh`,
+			};
+		},
+	},
+    legend: {
+      visible: false,
+    },
+    export: {
+      enabled: false,
+    },
+    valueAxis: {
+    },
+    loadingIndicator: {
+      enabled: true,
+    },
+  });
+  sb();
+  */
+});
+
+	
 </script>
-<body>
+<style>
+	.mainContainer{
+		width: 100%;
+	}
+	.sbd{
+		margin: 10px;
+	}
+	#chart{
+		margin: 2.5%;
+		width: 80%;
+	}
+</style>
+</head>
+<body class="dx-viewport">
 <div class="container">
   <div style="background: #E6E6E6; height: 50px; display: flex; flex-direction: row; justify-content: space-between;">
     <div><h1><a href="http://localhost:8080/">ECO Platform</a></h1></div>
@@ -61,6 +175,56 @@
 
     <!-- 컨텐츠영역 시작 -->
 
+	<div class="mainContainer">
+		<!-- select부분 -->
+		<div class="selectBoxs">
+			<div class="sbd">
+				<span>
+				장비종류 
+			<select class="sb" name="type" onchange="sb()">
+				<option value="chStatus">접속함</option>
+				<option value="acb">ACB</option>
+				<option value="vcb">VCB</option>
+				<option value="invert">인버터</option>
+			</select>
+				</span>
+				<span>
+				장비구분 
+			<select class="sb" name="div" onchange="sb()">
+				<option value="acb">ACB</option>
+				<option value="vcb">VCB</option>
+			</select>
+				</span>
+				<span>
+				트렌드 
+			<select class="sb" name="daily" onchange="sb()">
+				<option value="daily">일일트렌드</option>
+				<option value="monthly">월간트렌드</option>
+				<option value="yearly">연간트렌드</option>
+			</select>
+				</span>
+			</div>
+			<div class="sbd">
+				<span>
+					자료형태 
+			<select class="sb" name="unit" onchange="sb()">
+				<option value="hour">1시간</option>
+				<option value="day">하루</option>
+				<option value="week">일주일</option>
+				<option value="month">1개월</option>
+			</select>
+				</span>
+				<span>
+					기간선택 
+			<input type="date" id="startDay" value="2000-01-01" onblur="sb()"><input type="date" id="endDay" onblur="sb()">
+				</span>
+			</div>
+		</div>
+		<!-- 그래프-->
+		<div id="trendGraph">
+        <div id="chart"></div>
+		</div>
+	</div>
 
 </body>
 </html>

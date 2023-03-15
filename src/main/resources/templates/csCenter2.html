@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/dx.all.js}"></script>
+	<script type="text/javascript" th:src="@{/js/leeni_dxchart.js}"></script>
+	<script type="text/javascript" th:src="@{/js/leeni_dxdatagrid.js}"></script>
+	<script type="text/javascript" th:src="@{/js/leeni_dxCircularGauge.js}"></script>
+	<script type="text/javascript" th:src="@{/js/leeni_dxPieChart.js}"></script>
+	<script type="text/javascript" th:src="@{/js/home.js}"></script>
+	<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+
+<script type="text/javascript" th:src="@{/js/data.js}"></script>
+	<link th:href="@{/css/dx.light.css}" rel="stylesheet" >
+	<link th:href="@{/css/home.css}" rel="stylesheet">
+	<meta charset="UTF-8">
+	<title>Title</title>
+<style>
+	.saveButton{
+		float: right;
+	}
+	.mainContainer{
+		width: 80%;
+	}
+	.margin_b{
+		margin-bottom: 2.5%;
+	}
+	.contentBox{
+		margin: 2.5%;
+	}
+	.alarmTabDiv{
+		margin: 2.5%;
+		border-bottom: 1px solid rgb(68, 84, 106);
+	}
+	.alarmTabButton{
+		width: 100px;
+		height: 40px;
+		display: inline-block;
+		text-align: center;
+		font-size: 20px;
+		background-color: rgb(68, 84, 106);
+		color: white;
+	}.alarmTabButtonSelect{
+		background-color: midnightblue;
+	}.newIcon{
+		background-color: red;
+		color: white;
+		border-radius: 3px;
+		padding-right: 5px;
+		padding-left: 5px;
+		margin: 5px;
+	}
+	.popup_layer{
+		display:none;
+		position:absolute;
+		border: 2px solid rgb(68, 84, 106);
+		border-radius: 10px;
+		top:50%;
+		left:50%;
+		transform:translate(-50%,-50%);
+		width:400px;
+		height:400px;
+		background:#fff;
+		z-index:1000;
+	}
+	.layer-head{
+		width: 100%;
+		height: 30px;
+		border-radius: 5px;
+		background-color: rgb(68, 84, 106);
+		color: white;
+		text-align: center;
+	}
+.popup_layer .btn_r {
+	width: 100%;
+	margin: 10px 0 20px;
+	padding-top: 10px;
+	border-top: 1px solid #DDD;
+	text-align: right;
+}
+a.btn-layerClose:not(.hiddenInput){
+	display: inline-block;
+}
+a.btn-layerClose {
+	margin: 0 5px 0 0;
+	height: 25px;
+	padding: 0 14px 0;
+	border: 1px solid #304a8a;
+	background-color: #3f5a9d;
+	font-size: 13px;
+	color: #fff;
+	line-height: 25px;
+}
+a.btn-layerClose:hover {
+	border: 1px solid #091940;
+	background-color: #1f326a;
+	color: #fff;
+}
+	.hiddenInput{
+		display: none;
+	}
+	.raidoName{
+		font-size: 3px;
+	}
+.popupBg{
+	display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+</style>
+<script>	
+//팝업 스크립트
+function popOpenInquiry() {
+	$('#popup_layer_inq').fadeIn();
+	$('#popupBgInq')[0].style.display = "block";
+}
+
+function popOpenAnswer() {
+	$('#popup_layer_ans').fadeIn();
+	$('#popupBgAns')[0].style.display = "block";
+
+}
+function popCloseAnswer() {
+	$('#popup_layer_ans')[0].style.display = "none";
+	$('#popupBgAns')[0].style.display = "none";
+	
+	$('form').each(function() {
+		this.reset();
+	});
+}
+function popCloseInquiry() {
+	$('#popup_layer_inq')[0].style.display = "none";
+	$('#popupBgInq')[0].style.display = "none";
+// inquiry부분
+	$('#inqUb').addClass('hiddenInput');
+	$('#inqUptId').addClass('hiddenInput');
+	$('#inqB').addClass('hiddenInput');	
+	$('#inqCrtId').addClass('hiddenInput');
+	$('#ansSb').removeClass('hiddenInput');
+	
+	inputSet("inqId", "disabled", false);
+	inputSet("inqService", "disabled", true);
+	inputSet("inqSubject", "readonly", true);
+	inputSet("inqContents", "readonly", true);
+	inputSet("inqUptId", "readonly", true);
+	inputSet("inqPhone", "readonly", true);
+	inputSet("inqUptId", "disabled", false);
+	inputSet("inqCrtId", "disabled", false);
+	$(":radio[name='INQUIRY_DIV']").attr("onclick", "return false");
+
+	$('.layer-head')[0].innerHTML = "문의사항 상세정보";
+
+	$(":radio[name='INQUIRY_DIV']").attr("checked", false);
+// 폼 초기화
+	$('form').each(function() {
+		this.reset();
+	});
+}
+
+//inquiry popup
+
+function inqUpdate(){
+	$('.layer-head')[0].innerHTML = "문의사항 수정";
+	inputSet("inqService", "disabled", false);
+	inputSet("inqSubject", "readonly", false);
+	inputSet("inqContents", "readonly", false);
+	inputSet("inqUptId", "readonly", false);
+	inputSet("inqPhone", "readonly", false);
+	$('#inqB').removeClass('hiddenInput');
+	$('#inqUb').addClass('hiddenInput');
+	$('#ansSb').addClass('hiddenInput');
+	$(":radio[name='INQUIRY_DIV']").removeAttr("onclick", "return false");
+}
+
+function inqSave(){
+	$(":radio[name='INQUIRY_DIV'][value='1']").attr("checked", true);
+	$(":radio[name='INQUIRY_DIV']").removeAttr("onclick", "return false");
+	
+	inputSet("inqId", "disabled", true);
+	inputSet("inqService", "disabled", false);
+	inputSet("inqSubject", "readonly", false);
+	inputSet("inqContents", "readonly", false);
+	inputSet("inqUptId", "disabled", true);
+	$('#inqCrtId').removeClass('hiddenInput');
+	$('#inqB').removeClass('hiddenInput');
+	$('#ansSb').addClass('hiddenInput');
+	$('#inqId').val("");
+	$('#inqPhone').val($('#sessionPhone').val());
+	$('#inqCrtId').val($('#sessionId').val());
+	popOpenInquiry()
+}
+
+
+function inquiryUpdateSet(e){
+	if(e.CRT_ID  == $('#sessionId').val()){
+		$('#inqUb').removeClass('hiddenInput');
+	}
+	inputSet("inqCrtId", "disabled", true);
+	$('#inqId').val(e.INQUIRY_IDX);
+	$('#inqService').val(e.SERVICE_DIVISION);
+	$('#inqSubject').val(e.INQUIRY_SUBJECT);
+	$('#inqContents').val(e.INQUIRY_CONTENTS);
+	$('#inqPhone').val(e.PHONE);
+	if(e.UPT_ID){
+		$('#inqUptId').val(e.UPT_ID);		
+	}else{
+		$('#inqUptId').val(e.CRT_ID);
+	}
+	$('#inqUptId').removeClass('hiddenInput');
+	if(e.UPT_DT){
+		$('#inqDT')[0].innerHTML = e.UPT_DT;		
+	}else{
+		$('#inqDT')[0].innerHTML = e.CRT_DT;
+	}
+	$(":radio[name='INQUIRY_DIV'][value='" + e.INQUIRY_DIV + "']").attr("checked", true);
+}
+
+// answer popup
+
+function ansSave(){
+	$('#ansSubject')[0].innerHTML = $('#inqSubject').val();
+	$('#ansInqId')[0].innerHTML = $('#inqId').val();
+	popOpenAnswer();
+	popCloseInquiry();
+	
+}
+
+function answerUpdateSet(e){
+	
+}
+
+// form 전송(ajax)쪽 스크립트
+function cs2Search(){
+	const searchContents = $('#cs2Search').val();
+	console.log("검색어: " + searchContents);
+}
+
+// inq부분 저장 수정여부는 id값유무로 자동 체크
+function inqSaveForm(){
+	const form = $('#inqForm').serialize();
+	const idCheck = $('#inqId').val();
+	const inqService = $('#inqService').val();
+	const inqSubject = $('#inqSubject').val();
+	const inqContents = $('#inqContents').val();
+	if(inqService == ""){
+		alert("서비스를 입력해주세요.");
+		$('#inqService').focus();
+		return null;
+	}else if(inqSubject == ""){
+		alert("제목을 입력해주세요.");
+		$('#inqSubject').focus();
+		return null;
+	}else if(inqContents == ""){
+		alert("내용을 입력해주세요.");
+		$('#inqContents').focus();
+		return null;
+	}
+	
+	
+	
+	let formUrl;
+	//update인지 insert인지 id의 유무로 판단
+	if(idCheck){
+		formUrl = "/update";
+	}else{
+		formUrl = "/insert";
+	}
+	
+	
+	alert("폼 데이터: " + form + ", url주소: " + formUrl);
+	popCloseInquiry();
+}
+</script>
+<script th:inline="javascript">
+
+// grid 만드는 작업
+let mixData = mixList(inquiry, answer);
+let csCenter2Grid = new dxdatagrid();
+csCenter2Grid.setDataSource(mixData);
+columnName = ['index','SERVICE_DIVISION','INQUIRY_SUBJECT','GROUP','CRT_ID', 'PHONE' ,'DT'];
+csCenter2Grid.setColumns(columnName);
+csCenter2Grid.setPaging(15);
+captionName = ['순번','서비스','제목','사업그룹','등록자', '답변연락처' ,'등록일시'];
+csCenter2Grid.setCaptions(captionName);
+csCenter2Grid.setWidth('index', 50+"%");
+csCenter2Grid.setWidth('SERVICE_DIVISION', 100+"%");
+csCenter2Grid.setWidth('INQUIRY_SUBJECT', 250+"%");
+csCenter2Grid.setWidth('GROUP', 100+"%");
+csCenter2Grid.setWidth('CRT_ID', 100+"%");
+csCenter2Grid.setWidth('PHONE', 100+"%");
+csCenter2Grid.setWidth('DT', 150+"%");
+csCenter2Grid.setOnCellPrepared(function(e){
+		if (e.rowType == "data") {
+		let fieldHtml = '';
+		if(e.column.dataField == "SERVICE_DIVISION"){
+			if(e.value == 'Supply'){
+				fieldHtml = '공급기업';
+			}else if(e.value == 'Demand'){
+				fieldHtml = '수요기업';
+			}
+			e.cellElement.html(fieldHtml);
+		}
+		let newDay = new Date(new Date().setHours(0,0,0,0));
+		newDay.setDate(newDay.getDate()-2);
+		let eDate = new Date(e.data.DT);
+			if(e.column.dataField == "INQUIRY_SUBJECT"){
+				if(e.data.ANSWERS_TO_INQUIRIES_IDX && eDate >= newDay){
+					fieldHtml += "┗> [답변]" + e.value + `<span class='newIcon'>new</span>`;
+				}else if(eDate >= newDay){
+					fieldHtml += e.value + `<span class='newIcon'>new</span>`;
+				}else if(e.data.ANSWERS_TO_INQUIRIES_IDX){
+					fieldHtml += "┗> [답변]" + ` ` + e.value
+				}else{
+					return null;
+				}
+				e.cellElement.html(fieldHtml);
+			}
+		}
+	});
+
+csCenter2Grid.setOnRowClick(function(e){
+	if(e.rowType == 'data'){
+		if(e.data.ANSWERS_TO_INQUIRIES_IDX){
+			answerUpdateSet(e.data);
+			popOpenAnswer();
+		}
+		else{
+			inquiryUpdateSet(e.data);
+			popOpenInquiry()
+		}
+	}
+});
+	
+
+function inputSet(id,pro,set){
+	$("#"+id).attr(pro,set);
+}
+	
+// 두 리스트를 합치는 작업
+function mixList(list1, list2){
+	let resultList = [];
+	let index = 0;
+	for(let i = 1; i <= list1.length; i++){
+		resultList.push(list1[i-1]);
+		if(resultList[index].UPT_DT){
+			resultList[index].DT = resultList[index].UPT_DT;
+		}else{
+			resultList[index].DT = resultList[index].CRT_DT;
+		}
+		resultList[index].ID = resultList[index].INQUIRY_IDX ;
+		resultList[index].index = ++index;
+		for(let j = 1; j <= list2.length; j++){
+			if(list2[j-1].INQUIRY_IDX == list1[i-1].INQUIRY_IDX){
+				resultList.push(list2[j-1]);
+			if(resultList[index].UPT_DT){
+				resultList[index].DT = resultList[index].UPT_DT;
+			}else{
+				resultList[index].DT = resultList[index].CRT_DT;
+			}
+				resultList[index].INQUIRY_SUBJECT = list1[i-1].INQUIRY_SUBJECT;
+				resultList[index].SERVICE_DIVISION = list1[i-1].SERVICE_DIVISION;
+				resultList[index].ID = resultList[index].ANSWERS_TO_INQUIRIES_IDX ;
+				resultList[index].index = ++index ;
+			}
+		}
+	}
+	return resultList;
+}
+$(() => {
+	
+	$('#csCenter2Grid').dxDataGrid(csCenter2Grid);
+	
+});
+
+	
+
+</script>
+</head>
+<body>
+<div class="container">
+	<div style="background: #E6E6E6; height: 50px; display: flex; flex-direction: row; justify-content: space-between;">
+	<div><h1><a href="http://localhost:8080/">ECO Platform</a></h1></div>
+	<div style="display: flex; align-items: center;">
+		<div>2023.02.09 15:07 맑음 -2도 사업그룹/현장명</div>
+		<select>
+		<option value="">1태양광발전소</option>
+		<option value="">2태양광발전소</option>
+		<option value="">3태양광발전소</option>
+		</select>
+		<div>사용자명</div>
+	</div>
+	</div>
+
+	<div style="display: flex;">
+	<div style="background: #E6E6E6; width: 10%; height: 1600px;">
+		<div>
+		<h1 style="padding: 20px 20px; color: black;">xEMS</h1>
+		<ul>
+			<li class="make-li"><button type="button" th:text="대시보드" th:onclick="|location.href='@{http://localhost:8080/}'|"></button></li>
+			<li class="make-li"><button type="button" th:text="계통도" th:onclick="|location.href='@{http://localhost:8080/familyTree}'|"></button></li>
+			<li class="make-li"><button type="button" th:text="인버터" th:onclick="|location.href='@{http://localhost:8080/invert}'|"></button></li>
+			<li class="make-li"><button type="button" th:text="접속함" th:onclick="|location.href='@{http://localhost:8080/chStatus}'|"></button></li>
+			<li class="make-li"><button type="button" th:text="트랜드" th:onclick="|location.href='@{http://localhost:8080/trend}'|"></button></li>
+			<li class="make-li"><button type="button" th:text="보고서" th:onclick="|location.href='@{http://localhost:8080/report}'|"></button></li>
+			<li class="make-li"><button type="button" th:text="알람" th:onclick="|location.href='@{http://localhost:8080/alarm}'|"></button></li>
+			<li class="make-li"><button type="button" th:text="설정" th:onclick="|location.href='@{http://localhost:8080/setting}'|"></button></li>
+			<li class="make-li"><button type="button" th:text="고객센터" th:onclick="|location.href='@{http://localhost:8080/csCenter}'|"></button></li>
+		</ul>
+		</div>
+		<div style="margin-top: 500px;">
+		<div>발전용량</div>
+		<div>999.75 KWp</div>
+		<div>금일발전량</div>
+		<div>20968.0 KWp</div>
+		</div>
+	</div>
+
+	<!-- 컨텐츠영역 시작 -->
+	<input type="hidden" id="sessionId" th:value="${session.ID}" readonly>
+	<input type="hidden" id="sessionPhone" th:value="${session.PHONE}" readonly>
+	<div class="mainContainer">
+		<div class="alarmTabDiv">
+			<div class="alarmTabButton" th:onclick="|location.href='@{http://localhost:8080/csCenter}'|">공지사항</div>
+			<div class="alarmTabButton alarmTabButtonSelect">문의사항</div>
+		</div>
+		<div class="contentContainer contentBox">
+			<div class="margin_b">
+				<span>
+					<input type="text" id="cs2Search"> <input type="button" value="검색" onclick="cs2Search()">					
+				</span>
+				<span>
+					<input type="button" class="saveButton" value="문의작성" onclick="inqSave()">
+				</span>
+			</div>
+			<div id="csCenter2Grid"></div>
+		</div>
+	</div>
+
+	<div class="popupBg" id="popupBgInq"></div>
+	<div class="popup_layer" id="popup_layer_inq">
+		<div class="pop-container">
+					<div class="layer-head">
+						문의사항 상세정보			
+					</div>
+	<div class="popup_cont">
+		<form method="post" id="inqForm">
+			<input type="hidden" name="INQUIRY_IDX" id="inqId" readonly>
+			<table>
+				<tr>
+					<td>
+						서비스: 
+					</td>
+					<td>
+						<select name="SERVICE_DIVISION" id="inqService" disabled>
+							<option value="Supply">공급기업</option>
+							<option value="Demand">수요기업</option>
+							<option value="xEMS">xEMS</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<div class="raidoName">
+						<input type="radio" name="INQUIRY_DIV" onclick="return false" value="1"> 발전소공사
+						<input type="radio" name="INQUIRY_DIV" onclick="return false" value="2"> 발전량판매
+						<input type="radio" name="INQUIRY_DIV" onclick="return false" value="3"> 발전량구매
+						<input type="radio" name="INQUIRY_DIV" onclick="return false" value="4"> RE100
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						제목: 
+					</td>
+					<td>						
+						<input type="text" name="INQUIRY_SUBJECT" id="inqSubject" placeholder="제목" readonly>						
+					</td>
+				</tr>
+				<tr>
+					<td>
+						내용: 
+					</td>
+					<td>
+						<input type="text" name="INQUIRY_CONTENTS" id="inqContents" placeholder="내용" readonly>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						문의자명: 
+					</td>
+					<td>
+						<input type="text" class="hiddenInput" name="CRT_ID" id="inqCrtId" readonly>
+						<input type="text" class="hiddenInput" name="UPT_ID" id="inqUptId" readonly>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						답변연락처: 
+					</td>
+					<td>
+						<input type="text" name="PHONE" id="inqPhone" readonly>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						 등록일시: 
+					</td>
+					<td>
+						<div id="inqDT"></div>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+				<div class="btn_r">
+					<a class="btn-layerClose" id="ansSb" onClick="ansSave()">답변작성</a>
+					<a class="btn-layerClose hiddenInput" id="inqUb" onClick="inqUpdate()">수정</a>
+					<a class="btn-layerClose hiddenInput" id="inqSb" onClick="inqSave();">답변작성</a>
+					<a class="btn-layerClose hiddenInput" id="inqB" onClick="inqSaveForm();">작성</a>
+					<a href="#" onclick="popCloseInquiry()" class="btn-layerClose">닫기</a>
+				</div>
+		</div>
+	</div>
+	
+
+	<div class="popupBg" id="popupBgAns"></div>
+	<div class="popup_layer" id="popup_layer_ans">
+		<div class="pop-container">
+					<div class="layer-head">
+						답변 상세정보			
+					</div>
+	<div class="popup_cont">
+		<form method="post" id="ansForm">
+			<input type="hidden" name="ANSWERS_TO_INQUIRIES_IDX" id="ansId" readonly>
+			<input type="hidden" name="INQUIRY_IDX" id="ansInqId" readonly>
+			<table>
+				<tr>
+					<td>제목: </td>
+					<td><div id="ansSubject"></div></td>
+				</tr>
+				<tr>
+					<td>
+						내용: 
+					</td>
+					<td>
+						<input type="text" name="CONTENTS" id="ansContents" placeholder="내용" readonly>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						사업그룹: 
+					</td>
+					<td>
+						<input type="text" name="GROUP" id="ansGroup" placeholder="사업그룹" readonly>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						답변연락처: 
+					</td>
+					<td>
+						<input type="text" name="PHONE" id="ansPhone" placeholder="답변연락처" readonly>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						등록자: 
+					</td>
+					<td>
+						<input type="text" class="hiddenInput" name="CRT_ID" id="ansCrtIp" placeholder="등록자" readonly>
+						<input type="text" class="hiddenInput" name="UPT_ID" id="ansUptIp" placeholder="등록자" readonly>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						등록일시: 
+					</td>
+					<td>
+						<div id="ansDT"></div>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+				<div class="btn_r">
+					<a class="btn-layerClose hiddenInput" id="ansUb" onClick="ansUpdate()">수정</a>
+					<a class="btn-layerClose hiddenInput" id="ansB" onClick="ansSaveForm();">작성</a>
+					<a href="#" onclick="popCloseAnswer()" class="btn-layerClose">닫기</a>
+				</div>
+		</div>
+	</div>
+</body>
+</html>

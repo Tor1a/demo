@@ -114,3 +114,7 @@ dxPieChart.prototype.setTooltip = function(fixedPoint, precision, cornerRadius) 
       };
 	
 };
+
+dxPieChart.prototype.setOnPointClick = function (onEvt){
+	this.onPointClick = onEvt;
+}
