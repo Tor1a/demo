@@ -319,7 +319,7 @@ csCenter2Grid.setOnCellPrepared(function(e){
 		}
 	});
 
-csCenter2Grid.setOnRowClick(function(e){
+csCenter2Grid.setOnRowDblClick(function(e){
 	if(e.rowType == 'data'){
 		if(e.data.ANSWERS_TO_INQUIRIES_IDX){
 			answerUpdateSet(e.data);
@@ -329,6 +329,9 @@ csCenter2Grid.setOnRowClick(function(e){
 			inquiryUpdateSet(e.data);
 			popOpenInquiry()
 		}
+
+
+
 	}
 });
 	

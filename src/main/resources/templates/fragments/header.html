@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+	<div th:fragment="headerFragment">
+		<div id="wrap">
+			<header id="wrap_header">
+				<a href="" class="cont_logo"><img src="images/logo.png" alt=""></a>
+				<div class="siteMapBtn">
+					<p class="close" style="margin:0;">&equiv;</p>
+					<p class="open" style="display:none;margin:0;">&equiv;</p>
+				</div>
+				<div class="header_cont">
+					<ul>
+						<li>2023.03.09</li>
+						<li><img src="images/weather_icon.png" alt=""></li>
+						<li>13.0°C</li>
+					</ul>
+					<ul>
+						<li>
+							<select class="common_select">
+								<option value="">사업그룹 선택</option>
+								<option value=""></option>
+							</select>
+						</li>
+						<li><span class="spot_name">사업현장명사업현장명</span></li>
+						<li>
+							<img src="images/user_icon.png" alt="" width="15">
+							<span class="user_name">사용자명</span>
+						</li>
+					</ul>
+				</div>
+			</header>
+			<div id="main-sidebar">
+				<div class="cont_title">
+					<a href="">
+						<img src="images/title_icon.png" alt="">
+						<p>
+							<span class="menu_tit">xEMS</span>
+							<span class="sub_tit">태양광 모니터링</span>
+						</p>
+					</a>
+				</div>
+				<div class="sidebar-menu">
+					<div class="slide_menu">
+						<span class="menu_icon"><img src="images/menu_icon01.png" alt=""></span>
+						<span class="menu_tit" onclick="javascript:alert('event has been triggered');">대시보드</span>
+					</div>
+					<div class="slide_menu">
+						<span class="menu_icon"><img src="images/menu_icon02.png" alt=""></span>
+						<span class="menu_tit">계통도</span>
+					</div>
+					<div class="slide_menu">
+						<span class="menu_icon"><img src="images/menu_icon03.png" alt=""></span>
+						<span class="menu_tit">인버터</span>
+					</div>
+					<div class="slide_menu">
+						<span class="menu_icon"><img src="images/menu_icon04.png" alt=""></span>
+						<span class="menu_tit">접속함</span>
+					</div>
+					<div class="slide_menu">
+						<span class="menu_icon"><img src="images/menu_icon05.png" alt=""></span>
+						<span class="menu_tit">트렌드</span>
+					</div>
+					<div class="slide_menu">
+						<span class="menu_icon"><img src="images/menu_icon06.png" alt=""></span>
+						<span class="menu_tit">보고서</span>
+					</div>
+					<div class="slide_menu">
+						<span class="menu_icon"><img src="images/menu_icon07.png" alt=""></span>
+						<span class="menu_tit tit_LHeight">알람</span>
+						<p class="arrow_form">
+							<span class="arrow_up"></span>
+							<span class="arrow_down"></span>
+						</p>
+					</div>
+					<div class="treeview-menu">
+						<a href="">알림현황</a>
+						<a href="">알림분석</a>
+						<a href="">통신상태</a>
+					</div>
+					<div class="slide_menu">
+						<span class="menu_icon"><img src="images/menu_icon08.png" alt=""></span>
+						<span class="menu_tit">설정</span>
+						<p class="arrow_form">
+							<span class="arrow_up"></span>
+							<span class="arrow_down"></span>
+						</p>
+					</div>
+					<div class="treeview-menu">
+						<a href="">발전소설정</a>
+						<a href="">사용자계정</a>
+						<a href="">RTU</a>
+					</div>
+					<div class="slide_menu">
+						<span class="menu_icon"><img src="images/menu_icon09.png" alt=""></span>
+						<span class="menu_tit">고객센터</span>
+						<p class="arrow_form">
+							<span class="arrow_up"></span>
+							<span class="arrow_down"></span>
+						</p>
+					</div>
+					<div class="treeview-menu">
+						<a href="">공지사항</a>
+						<a href="">문의사항</a>
+					</div>
+				</div>
+				<div id="mini_display">
+					<h4>발전량용량</h4>
+					<p>
+						<span class="num_data">9999.9</span>
+						<span class="data_sym PR10">kW</span>
+					</p>
+					<h4>금일발전량</h4>
+					<p>
+						<span class="num_data">2,968.0</span>
+						<span class="data_sym">kWh</span>
+					</p>
+				</div><!-- mini_displayEnd  -->
+			</div><!-- main-sidebarEnd  -->
+
+			<div class="mo_wrapper">
+				<div class="container">
+					<div class="head">
+						<div class="slide-open" id="slide-open">
+			  <span class="burgur" id="burgur">
+				  <span class="top-line"></span>
+				  <span class="bot-line"></span>
+			  </span>
+						</div>
+						<div class="logo"><a href="" class="cont_logo"><img src="images/logo.png" alt=""></a></div>
+						<ul>
+							<li><img src="images/weather_icon.png" alt=""></li>
+							<li>13.0°C</li>
+						</ul>
+						<div class="header_cont">
+							<div class="spot_form">
+								<ul>
+									<li>
+										<select name="" id="" class="common_select">
+											<option value="">사업그룹 선택</option>
+											<option value=""></option>
+										</select>
+									</li>
+								</ul>
+								<ul>
+									<li><span class="spot_name">사업현장명사업현장명</span></li>
+									<li>
+										<img src="images/user_icon.png" alt="" width="15">
+										<span class="user_name">사용자명</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="slide" id="slide">
+						<div class="sidebar-menu">
+							<div class="slide_menu">
+								<span class="menu_icon"><img src="images/menu_icon01.png" alt=""></span>
+								<span class="menu_tit">대시보드</span>
+							</div>
+							<div class="slide_menu">
+								<span class="menu_icon"><img src="images/menu_icon02.png" alt=""></span>
+								<span class="menu_tit">계통도</span>
+							</div>
+							<div class="slide_menu">
+								<span class="menu_icon"><img src="images/menu_icon03.png" alt=""></span>
+								<span class="menu_tit">인버터</span>
+							</div>
+							<div class="slide_menu">
+								<span class="menu_icon"><img src="images/menu_icon04.png" alt=""></span>
+								<span class="menu_tit">접속함</span>
+							</div>
+							<div class="slide_menu">
+								<span class="menu_icon"><img src="images/menu_icon05.png" alt=""></span>
+								<span class="menu_tit">트렌드</span>
+							</div>
+							<div class="slide_menu">
+								<span class="menu_icon"><img src="images/menu_icon06.png" alt=""></span>
+								<span class="menu_tit">보고서</span>
+							</div>
+							<div class="slide_menu">
+								<span class="menu_icon"><img src="images/menu_icon07.png" alt=""></span>
+								<span class="menu_tit tit_LHeight">알람</span>
+								<p class="arrow_form">
+									<span class="arrow_up"></span>
+									<span class="arrow_down"></span>
+								</p>
+							</div>
+							<div class="treeview-menu">
+								<a href="">알림현황</a>
+								<a href="">알림분석</a>
+								<a href="">통신상태</a>
+							</div>
+							<div class="slide_menu">
+								<span class="menu_icon"><img src="images/menu_icon08.png" alt=""></span>
+								<span class="menu_tit">설정</span>
+								<p class="arrow_form">
+									<span class="arrow_up"></span>
+									<span class="arrow_down"></span>
+								</p>
+							</div>
+							<div class="treeview-menu">
+								<a href="">발전소설정</a>
+								<a href="">사용자계정</a>
+								<a href="">RTU</a>
+							</div>
+							<div class="slide_menu">
+								<span class="menu_icon"><img src="images/menu_icon09.png" alt=""></span>
+								<span class="menu_tit">고객센터</span>
+								<p class="arrow_form">
+									<span class="arrow_up"></span>
+									<span class="arrow_down"></span>
+								</p>
+							</div>
+							<div class="treeview-menu">
+								<a href="">공지사항</a>
+								<a href="">문의사항</a>
+							</div>
+						</div> <!-- sidebar-menuEnd -->
+						<div>
+							<h4>발전량용량</h4>
+							<p>
+								<span class="num_data">9999.9</span>
+								<span class="data_sym PR10">kW</span>
+							</p>
+							<h4>금일발전량</h4>
+							<p>
+								<span class="num_data">2,968.0</span>
+								<span class="data_sym">kWh</span>
+							</p>
+						</div><!-- mini_displayEnd  -->
+					</div> <!-- slideEnd -->
+				</div> <!-- containerEnd -->
+			</div><!-- wrapperEnd  -->
+		</div> <!-- wrapEnd  -->
+	</div>
+</html>

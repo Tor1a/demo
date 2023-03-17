@@ -8,7 +8,22 @@ public class homeController {
     @GetMapping("/")
     public String home(){
         return "home";
+
     }
+    @GetMapping("/test")
+    public String test(){
+        return "home";
+    }
+
+    @GetMapping("/test2")
+    public String test2(){
+        return "test/home2";
+    }
+
+//    @GetMapping("/home")
+//    public String home(){
+//        return "home";
+//    }
     @GetMapping("/familyTree")
     public String familyTree(){
         return "familyTree";
@@ -33,6 +48,14 @@ public class homeController {
     @GetMapping("/alarm")
     public String alarm(){
         return "alarm";
+    }
+    @GetMapping("/alarm2")
+    public String alarm2(){
+        return "alarm2";
+    }
+    @GetMapping("/alarm3")
+    public String alarm3(){
+        return "alarm3";
     }
     @GetMapping("/setting")
     public String setting(){

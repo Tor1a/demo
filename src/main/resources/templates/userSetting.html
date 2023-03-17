@@ -22,58 +22,34 @@
 
 </script>
 <body>
-<div class="container">
-  <div style="background: #E6E6E6; height: 50px; display: flex; flex-direction: row; justify-content: space-between;">
-    <div><h1><a href="http://localhost:8080/">ECO Platform</a></h1></div>
-    <div style="display: flex; align-items: center;">
-      <div>2023.02.09 15:07 맑음 -2도 사업그룹/현장명</div>
-      <select>
-        <option value="">1태양광발전소</option>
-        <option value="">2태양광발전소</option>
-        <option value="">3태양광발전소</option>
-      </select>
-      <div>사용자명</div>
-    </div>
-  </div>
-
-  <div style="display: flex;">
-    <div style="background: #E6E6E6; width: 10%; height: 1600px;">
-      <div>
-        <h1 style="padding: 20px 20px; color: black;">xEMS</h1>
-        <ul>
-          <li class="make-li"><button type="button" th:text="대시보드" th:onclick="|location.href='@{http://localhost:8080/}'|"></button></li>
-          <li class="make-li"><button type="button" th:text="계통도" th:onclick="|location.href='@{http://localhost:8080/familyTree}'|"></button></li>
-          <li class="make-li"><button type="button" th:text="인버터" th:onclick="|location.href='@{http://localhost:8080/invert}'|"></button></li>
-          <li class="make-li"><button type="button" th:text="접속함" th:onclick="|location.href='@{http://localhost:8080/chStatus}'|"></button></li>
-          <li class="make-li"><button type="button" th:text="트랜드" th:onclick="|location.href='@{http://localhost:8080/trend}'|"></button></li>
-          <li class="make-li"><button type="button" th:text="보고서" th:onclick="|location.href='@{http://localhost:8080/report}'|"></button></li>
-          <li class="make-li"><button type="button" th:text="알람" th:onclick="|location.href='@{http://localhost:8080/alarm}'|"></button></li>
-          <li class="make-li"><button type="button" th:text="설정" th:onclick="|location.href='@{http://localhost:8080/setting}'|"></button></li>
-          <li class="make-li"><button type="button" th:text="고객센터" th:onclick="|location.href='@{http://localhost:8080/csCenter}'|"></button></li>
-        </ul>
-      </div>
-      <div style="margin-top: 500px;">
-        <div>발전용량</div>
-        <div>999.75 KWp</div>
-        <div>금일발전량</div>
-        <div>20968.0 KWp</div>
-      </div>
-    </div>
-
-    <!-- 컨텐츠영역 시작 -->
-    <div>
-      <ul>
-        <li><button type="button" th:text="발전소설정" th:onclick="|location.href='@{http://localhost:8080/setting}'|"></button></li>
-        <li><button type="button" th:text="사용자계정" th:onclick="|location.href='@{http://localhost:8080/userSetting}'|"></button></li>
-        <li><button type="button" th:text="RTU" th:onclick="|location.href='@{http://localhost:8080/RTU}'|"></button></li>
+<div id="contents_wrap">
+  <div class="cont_header">
+    <h1 class="page_title">
+      <img src="../images/menu_icon08.png" alt="">
+      <span>발전소설정</span>
+    </h1>
+    <p class="page_navi">
+      <span>태양광 모니터링</span>&gt;<span>설정</span>&gt;<span class="bold_color">발전소설정</span>
+    </p>
+  </div> <!-- cont_headerEnd -->
+  <div class="cont_main">
+    <div class="search_wrap">
+      <input class="common_input"placeholder="검색어 입력" type="text">
+      <button class="commom_btn">검색</button>
+      <ul class="btn_form">
+        <li><button class="commom_btn bgREDcolor">삭제</button></li>
+        <li><button class="commom_btn">등록</button></li>
       </ul>
-      <div>
-        <input type="text" th:placeholder="검색어"><button type="button" th:text="검색" th:onclick="search()"></button>
-      </div>
-    </div>
-    <div id="gridUserSetting"></div>
-  </div>
-</div>
+    </div> <!-- search_wrapEnd -->
+    <div class="table_wrap">
+      <div id="gridUserSetting"></div>
+    </div> <!-- table_wrapEnd -->
+  </div> <!-- cont_mainEnd -->
+</div> <!-- contents_wrapEnd -->
+
+
+
+
 <div class="popup_layer" id="popup_layer" style="display: none;">
   <div class="popup_box">
     <div><h2>사용자 정보 수정</h2></div>

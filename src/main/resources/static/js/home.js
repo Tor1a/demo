@@ -1,5 +1,4 @@
-
-    $( document ).ready(function() {
+$( document ).ready(function() {
 
  // dxdatagrid 부분----------------------------------------------
     let datagrid = new dxdatagrid();
@@ -512,39 +511,7 @@
     $('#pie18').dxPieChart(piechart);
 
 
-
 }); // ready 함수 끝
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     function onChoiceUpdate(dxGrid) {
 
@@ -560,3 +527,10 @@
     alert('keys: ' + arrKey);
 }
 
+function invMark(e) {
+        if (e.checked) {
+            $('#eachInverter').css("display", "flex")
+        } else {
+            $('#eachInverter').css("display", "none")
+        }
+    }

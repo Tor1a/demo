@@ -1,0 +1,275 @@
+@charset "utf-8";
+
+#contents {
+
+}
+
+#contents .cont_page {
+	width: 99%;
+	height: 912px;
+	margin-top: 5px;
+	margin-left: 10px;
+}
+
+#contents_wrap {
+	width: 100%;
+	background-color: #ECF0F5;
+}
+
+	.cont_header {
+		overflow: hidden;
+	}
+
+	.page_title {
+		float: left;
+		width: 30%;
+		line-height: 42px;
+		padding-left: 12px;
+		padding-bottom: 5px;
+	}
+
+	.page_title img {
+		vertical-align: middle;
+	}
+
+	.page_title span {
+		font-family: 'NotoSansKR';
+		font-weight: 600;
+		font-size: 20px;
+		vertical-align: middle;
+	}
+
+	.page_navi {
+		float: right;
+		color: #888;
+		font-family: 'NotoSansKR';
+		font-weight: 500;
+		font-size: 12px;
+		line-height: 22px;
+		margin-right: 28px;
+		vertical-align: middle;	
+	}
+
+	.page_navi span {
+		padding: 0 5px;
+	}
+
+	.cont_main {
+		width: 99.7%;
+		height: 800px;
+		background-color: #FFF;
+	}
+
+	.search_wrap {
+		overflow: hidden;
+		padding: 10px 1%;
+	}
+
+	.search_wrap p {
+		float: left;
+	}
+
+	.search_wrap .search_tit {
+		font-family: 'NotoSansKR';
+		font-weight: 500;
+		font-size: 14px;
+		padding-right: 10px;
+	}
+
+	.search_wrap .one_btn {
+		width: 130px;
+	}
+
+	/*  차트관련  */
+
+	.chart_wrap {
+		overflow: hidden;
+		width: 98%;
+		margin: 0 auto;
+	}
+
+	.multipleChart_wrap {
+		overflow: hidden;
+		width: 98%;
+		margin: 0 auto;
+		margin-bottom: 20px;
+	}
+
+	.multipleChart_wrap .chart_wrap {
+		float: left;
+		width: 25%;
+		margin-right: 1%;
+	}
+
+	.multipleChart_wrap .chart_wrap:last-child {
+		float: right;
+		width: 48%;
+		margin-right: 0;
+	}
+
+	.chart_tit {
+		width: 100%;
+		height: 40px;
+		color: #717578;
+		background-color: #F7F8FB;
+		font-family: 'NotoSansKR';
+		font-weight: 600;
+		line-height: 40px;
+		padding-left: 10px;
+	}
+
+	.multipleChart_wrap .chart_container {
+		height: 330px !important;
+	}
+
+	.chart_container {
+		width: 100%;
+		height: 300px;
+		margin-top: 10px;
+		border: 1px solid #EEE;
+	}
+
+	.onechart_container {
+		width: 100%;
+		height: 680px;
+		margin-top: 10px;
+		border: 1px solid #EEE;
+	}
+
+
+
+	/*  테이블관련  */
+
+	.table_wrap {
+		width: 98%;
+		height: 735px;
+		margin: 0 auto;
+		border: 1px solid #EEE;
+	}
+
+
+	.andTtable_wrap {
+		width: 98%;
+		height: 362px;
+		margin: 0 auto;
+		margin-top: 20px;
+		border: 1px solid #EEE;
+	}
+
+	.oneTable_wrap {
+		width: 98%;
+		height: 760px;
+		margin: 0 auto;
+		border: 1px solid #EEE;
+	}
+
+	.MT10 {
+		margin-top: 10px;
+	}
+
+	
+	.MT20 {
+		margin-top: 20px;
+	}
+
+	.PT10 {	
+		padding-top: 10px;
+	}
+
+	.PT20 {	
+		padding-top: 20px;
+	}
+
+
+
+
+
+
+/*  COMMON */
+	.common_input {
+		width: 230px;
+		font-family: 'NotoSansKR';
+		font-weight: 500;
+		font-size: 14px;
+		line-height: 24px;
+		padding: 2px 10px;
+		border: 1px solid #AAA;
+		border-radius: 5px;
+	}
+
+	.common_date {
+		width: 150px;
+		font-family: 'NotoSansKR';
+		font-weight: 500;
+		font-size: 14px;
+		line-height: 24px;
+		padding: 2px 10px;
+		border: 1px solid #AAA;
+		border-radius: 5px;
+	}
+
+	
+	.common_select {
+		width: 200px;
+		height: 30px;
+		font-family: 'NotoSansKR';
+		padding: 0 10px;
+		margin-right: 10px;
+		border: 1px solid #AAA;
+		border-radius: 5px;
+	}
+
+
+	.btn_form {
+		float: right;
+		display: flex;
+		width: 200px;
+	}
+
+	.btn_form > li {
+		flex:auto;
+		margin-left: 10px;
+	}
+
+	.btn_form .commom_btn {
+		width: 100%;
+	}
+
+	.commom_btn {
+		width: 80px;
+		color: #FFF;
+		background-color: #333;
+		font-family: 'NotoSansKR';
+		font-weight: 600;
+		font-size: 13px;
+		line-height: 22px;
+		padding: 2px 10px;
+		border-radius: 5px;
+	}
+
+	.commom_btn:hover {
+		background-color: #000;
+		border-color: #000;
+	}
+
+
+
+	/* COLOR */
+
+	.bold_color {
+		color: #394453;
+		font-weight: 900;
+		font-size: 13px;
+	}
+
+	.bgREDcolor {
+		background-color: #762222;
+		border-color: #762222;
+	}
+
+	.bgREDcolor:hover {
+		background-color: #AC1A1A;
+		border-color: #AC1A1A;
+	}
+
+
