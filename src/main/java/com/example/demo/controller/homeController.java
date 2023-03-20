@@ -2,28 +2,17 @@ package com.example.demo.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class homeController {
     @GetMapping("/")
     public String home(){
-        return "home";
-
-    }
-    @GetMapping("/test")
-    public String test(){
+        ModelAndView mav = new ModelAndView("powerPlantsSetting");
+        System.out.println(mav);
         return "home";
     }
-
-    @GetMapping("/test2")
-    public String test2(){
-        return "test/home2";
-    }
-
-//    @GetMapping("/home")
-//    public String home(){
-//        return "home";
-//    }
     @GetMapping("/familyTree")
     public String familyTree(){
         return "familyTree";
@@ -57,10 +46,13 @@ public class homeController {
     public String alarm3(){
         return "alarm3";
     }
-    @GetMapping("/setting")
-    public String setting(){
-        return "powerPlantsStting";
+    @GetMapping("/ppSetting")
+    @ResponseBody
+    public ModelAndView ppSetting(){
+        ModelAndView mav = new ModelAndView("powerPlantsSetting");
+        return mav;
     }
+
     @GetMapping("/csCenter2")
     public String csCenter(){
         return "csCenter2";

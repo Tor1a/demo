@@ -1,26 +1,14 @@
-<!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head>
-  <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
-  <script type="text/javascript" th:src="@{/js/dx.all.js}"></script>
-  <script type="text/javascript" th:src="@{/js/leeni_dxchart.js}"></script>
-  <script type="text/javascript" th:src="@{/js/leeni_dxdatagrid.js}"></script>
-  <script type="text/javascript" th:src="@{/js/leeni_dxCircularGauge.js}"></script>
-  <script type="text/javascript" th:src="@{/js/leeni_dxPieChart.js}"></script>
-  <script type="text/javascript" th:src="@{/js/powerPlantsStting.js}"></script>
+<!--<!DOCTYPE html>-->
+<!--<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"-->
+<!--      xmlns:th="http://www.thymeleaf.org"-->
+<!--      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"-->
+<!--      layout:decorate="~{layout/default_layout}">-->
+<!--  <th:block layout:fragment="script">-->
+<!--  <script th:src="@{/js/powerPlantsStting.js}"></script>-->
+<!--  </th:block>-->
 
-  <link th:href="@{/css/dx.light.css}" rel="stylesheet" >
-  <link th:href="@{/css/layer_popup.css}" rel="stylesheet" >
-  <link th:href="@{/css/home.css}" rel="stylesheet">
-  <meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" href="../css/reset.css" />
-  <link rel="stylesheet" type="text/css" href="../css/common.css" />
-  <link rel="stylesheet" type="text/css" href="../css/main_menu.css" />
-  <link rel="stylesheet" type="text/css" href="../css/contents.css" />
-  <title>Title</title>
-</head>
-
-<body>
+<!-- <div layout:fragment="content" id="ppSetting">-->
+ <div id="ppSetting">
 <div id="contents_wrap">
   <div class="cont_header">
     <h1 class="page_title">
@@ -34,7 +22,7 @@
   <div class="cont_main">
     <div class="search_wrap">
       <input class="common_input"placeholder="검색어 입력" type="text">
-      <button class="commom_btn">검색</button>
+      <button onclick="ppSearch();" class="commom_btn">검색</button>
 <!--      <ul class="btn_form">-->
 <!--        <li><button class="commom_btn bgREDcolor">삭제</button></li>-->
 <!--        <li><button class="commom_btn">등록</button></li>-->
@@ -45,9 +33,6 @@
     </div> <!-- table_wrapEnd -->
   </div> <!-- cont_mainEnd -->
 </div> <!-- contents_wrapEnd -->
-
-
-
 
 <!-- 팝업-->
 <div class="popup_layer" id="popup_layer" style="display: none;">
@@ -132,5 +117,5 @@
     </div>
   </div>
 </div>
-    </body>
-    </html>
+ </div>
+<!--    </html>-->

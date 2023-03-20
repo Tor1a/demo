@@ -1,7 +1,11 @@
 
 $( document ).ready(function() {
 
-    // dxdatagrid 부분----------------------------------------------
+   // dxdatagrid 부분----------------------------------------------
+    dataGrid();
+}); // ready 함수 끝
+
+function dataGrid(){
     let datagrid = new dxdatagrid();
 
     let bowl = [['삭제', false, true, true, 'trash', onChoiceDelete], ['신규등록', false, true, true, 'trash', onChoiceUpdate]];
@@ -38,9 +42,7 @@ $( document ).ready(function() {
             }
         });
     }
-
-
-}); // ready 함수 끝
+}
 
 function onChoiceUpdate(dxGrid) {
     document.getElementById("popup_layer").style.display = "block";
@@ -53,7 +55,7 @@ function closePop() {
 }
 
 
-const onChoiceDelete = (dxGrid) => {
+function onChoiceDelete(dxGrid) {
     var arrKey = [];
 
     dxGrid.getSelectedRowKeys().forEach((key) => {
@@ -62,6 +64,6 @@ const onChoiceDelete = (dxGrid) => {
     alert('keys: ' + arrKey);
 }
 
-const dblRowClick = () => {
-
+function dblRowClick(){
+        alert('test');
 }

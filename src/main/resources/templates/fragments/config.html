@@ -1,10 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html lagn="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"l>
 
-</body>
+<th:block th:fragment="configFragment">
+    <link th:href="@{/css/common.css}" rel="stylesheet">
+    <link th:href="@{/css/contents.css}" rel="stylesheet">
+    <link th:href="@{/css/main_menu.css}" rel="stylesheet">
+    <link th:href="@{/css/reset.css}" rel="stylesheet">
+    <link th:href="@{/css/layer_popup.css}" rel="stylesheet" >
+    <link th:href="@{/css/dx.light.css}" rel="stylesheet" >
+    <link th:href="@{/css/home.css}" rel="stylesheet">
+
+    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/dx.all.js}"></script>
+    <script type="text/javascript" th:src="@{/js/leeni_dxchart.js}"></script>
+    <script type="text/javascript" th:src="@{/js/leeni_dxdatagrid.js}"></script>
+    <script type="text/javascript" th:src="@{/js/leeni_dxCircularGauge.js}"></script>
+    <script type="text/javascript" th:src="@{/js/leeni_dxPieChart.js}"></script>
+<!--    <script type="text/javascript" th:src="@{/js/jquery-1.12.0.min.js}"></script>-->
+    <script type="text/javascript" th:src="@{/js/main_menu.js}"></script>
+    <script type="text/javascript" th:src="@{/js/mo_main_menu.js}"></script>
+    <script type="text/javascript" th:src="@{/js/home.js}"></script>
+    <script type="text/javascript" th:src="@{/js/powerPlantsStting.js}"></script>
+    <script type="text/javascript" th:src="@{/js/userSetting.js}"></script>
+    <script type="text/javascript" th:src="@{/js/RTU.js}"></script>
+
+
+
+    <th:block layout:fragment="script"></th:block>
+    <th:block layout:fragment="css"></th:block>
+    <script>
+
+
+        function pg(num){
+            switch (num){
+                case 1:
+                $.ajax({
+                   type:'GET',
+                   url: 'ppSetting',
+                    success: function (data){
+
+                        document.getElementById('contents').innerHTML = data;
+                        dataGrid();
+
+                    }
+
+                });
+                break;
+                case 2:
+                //     $.ajax({
+                //     type:'GET',
+                //     url: 'userSetting',
+                //     success: function (data){
+                //         document.getElementById('contents').innerHTML = data;
+                //
+                //         // console.log(data);
+                //     }
+                //
+                // });
+                break;
+                case 3:
+                    $.ajax({
+                        type:'GET',
+                        url: 'RTU',
+                        success: function (data){
+                            document.getElementById('contents').innerHTML = data;
+
+                            // console.log(data);
+                        }
+
+                    });
+                break;
+                case 4:
+                    $.a
+                    break;
+                case 5:
+                    alert('test2');
+            }
+
+        }
+    </script>
+</th:block>
+
 </html>

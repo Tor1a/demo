@@ -6,7 +6,7 @@ function dblRowClick(){
     alert('2');
 }
 
-window.onload = function (){
+$( document ).ready(function() {
     let datagrid = new dxdatagrid();
 
     let bowl = [['삭제', false, true, true, 'trash', onChoiceDelete], ['신규등록', false, true, true, 'trash', setOnRowInserting]];
@@ -44,7 +44,7 @@ window.onload = function (){
             }
         });
     }
-}
+});
 
 function setOnRowInserting(dxGrid) {
     document.getElementById("popup_layer").style.display = "block";
@@ -54,7 +54,7 @@ function closePop() {
     document.getElementById("popup_layer").style.display = "none";
 }
 
-const onChoiceDelete = (dxGrid) => {
+function onChoiceDelete(dxGrid) {
     var arrKey = [];
 
     dxGrid.getSelectedRowKeys().forEach((key) => {

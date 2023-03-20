@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
 	<div th:fragment="headerFragment">
 		<div id="wrap">
 			<header id="wrap_header">
-				<a href="" class="cont_logo"><img src="images/logo.png" alt=""></a>
+				<a href="http://localhost:8080" class="cont_logo"><img src="images/logo.png" alt=""></a>
 				<div class="siteMapBtn">
 					<p class="close" style="margin:0;">&equiv;</p>
 					<p class="open" style="display:none;margin:0;">&equiv;</p>
@@ -42,7 +44,7 @@
 				<div class="sidebar-menu">
 					<div class="slide_menu">
 						<span class="menu_icon"><img src="images/menu_icon01.png" alt=""></span>
-						<span class="menu_tit" onclick="javascript:alert('event has been triggered');">대시보드</span>
+						<span class="menu_tit">대시보드</span>
 					</div>
 					<div class="slide_menu">
 						<span class="menu_icon"><img src="images/menu_icon02.png" alt=""></span>
@@ -50,11 +52,11 @@
 					</div>
 					<div class="slide_menu">
 						<span class="menu_icon"><img src="images/menu_icon03.png" alt=""></span>
-						<span class="menu_tit">인버터</span>
+						<a href="#" class="menu_tit" onclick="pg(5);">인버터</a>
 					</div>
 					<div class="slide_menu">
 						<span class="menu_icon"><img src="images/menu_icon04.png" alt=""></span>
-						<span class="menu_tit">접속함</span>
+						<a href="http://localhost:8080/chStatus">접속함</a>
 					</div>
 					<div class="slide_menu">
 						<span class="menu_icon"><img src="images/menu_icon05.png" alt=""></span>
@@ -86,9 +88,9 @@
 						</p>
 					</div>
 					<div class="treeview-menu">
-						<a href="">발전소설정</a>
-						<a href="">사용자계정</a>
-						<a href="">RTU</a>
+						<a href="#" onclick="pg(1);">발전소설정</a>
+						<a href="http://localhost:8080/userSetting">사용자계정</a>
+						<a href="#" onclick="pg(3);">RTU</a>
 					</div>
 					<div class="slide_menu">
 						<span class="menu_icon"><img src="images/menu_icon09.png" alt=""></span>
@@ -167,7 +169,7 @@
 							</div>
 							<div class="slide_menu">
 								<span class="menu_icon"><img src="images/menu_icon04.png" alt=""></span>
-								<span class="menu_tit">접속함</span>
+								<span class="menu_tit"><a href="http://localhost:8080/chStatus">접속함</a></span>
 							</div>
 							<div class="slide_menu">
 								<span class="menu_icon"><img src="images/menu_icon05.png" alt=""></span>
@@ -199,9 +201,9 @@
 								</p>
 							</div>
 							<div class="treeview-menu">
-								<a href="">발전소설정</a>
-								<a href="">사용자계정</a>
-								<a href="">RTU</a>
+								<a href="http://localhost:8080/ppSetting">발전소설정</a>
+								<a href="http://localhost:8080/userSetting">사용자계정</a>
+								<a href="http://localhost:8080/RTU">RTU</a>
 							</div>
 							<div class="slide_menu">
 								<span class="menu_icon"><img src="images/menu_icon09.png" alt=""></span>

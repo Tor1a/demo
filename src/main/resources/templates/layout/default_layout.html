@@ -4,16 +4,14 @@
 			xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	<head>
 		<title>ECO FLATFORM</title>
-		<link th:href="@{/css/common.css}" rel="stylesheet">
-		<link th:href="@{/css/contents.css}" rel="stylesheet">
-		<link th:href="@{/css/main_menu.css}" rel="stylesheet">
-		<link th:href="@{/css/reset.css}" rel="stylesheet">
-
-		<script type="text/javascript" th:src="@{/js/jquery-1.12.0.min.js}"></script>
-		<script type="text/javascript" th:src="@{/js/main_menu.js}"></script>
-		<script type="text/javascript" th:src="@{/js/mo_main_menu.js}"></script>
+		<th:block th:replace="fragments/config :: configFragment"></th:block>
 	</head>
+	<body class="landing area">
 	<header th:replace="fragments/header :: headerFragment"></header>
-	<div layout:fragment="content" id="contents"></div>
+	<div layout:fragment="content" id="contents">
+
+	</div>
+<!--	<div id="contents"></div>-->
 	<footer th:replace="fragments/footer :: footerFragment" id="wrap_footer"></footer>
+	</body>
 </html>

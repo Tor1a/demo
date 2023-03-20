@@ -1,80 +1,39 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
-    <script type="text/javascript" th:src="@{/js/dx.all.js}"></script>
-    <script type="text/javascript" th:src="@{/js/leeni_dxchart.js}"></script>
-    <script type="text/javascript" th:src="@{/js/leeni_dxdatagrid.js}"></script>
-    <script type="text/javascript" th:src="@{/js/leeni_dxCircularGauge.js}"></script>
-    <script type="text/javascript" th:src="@{/js/leeni_dxPieChart.js}"></script>
-    <script type="text/javascript" th:src="@{/js/csStatus.js}"></script>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+<div layout:fragment="content">
+    <div id="contents_wrap">
+        <div class="cont_header">
+            <h1 class="page_title">
+                <img src="../images/menu_icon05.png" alt="">
+                <span>접속함 (채널상태)</span>
+            </h1>
+            <p class="page_navi">
+                <span>태양광 모니터링</span>&gt;<span class="bold_color">접속함</span>
+            </p>
+        </div> <!-- cont_headerEnd -->
+        <div class="cont_main PT20">
+            <div class="multipleChart_wrap">
+                <div class="chart_wrap">
+                    <p class="chart_tit">각 인버터에 속한 접속함의 전류함</p>
+                    <div class="chart_container"></div>
+                </div> <!-- chart_wrapEnd -->
+                <div class="chart_wrap">
+                    <p class="chart_tit">인버터 [INV#1] 에 속한 접속함</p>
+                    <div class="chart_container"></div>
+                </div> <!-- chart_wrapEnd -->
+                <div class="chart_wrap">
+                    <p class="chart_tit">CONBOX#1 [18CH] - 채널별Ampere</p>
+                    <div class="chart_container"></div>
+                </div> <!-- chart_wrapEnd -->
+            </div> <!-- multipleChart_wrapEnd -->
+            <div class="andTtable_wrap ">
+            </div> <!-- table_wrapEnd -->
+        </div> <!-- cont_mainEnd -->
+    </div> <!-- contents_wrapEnd -->
 
-    <link th:href="@{/css/dx.light.css}" rel="stylesheet" >
-    <link th:href="@{/css/home.css}" rel="stylesheet">
-    <meta charset="UTF-8">
-    <title>inevrt</title>
-</head>
-<script>
+</div>
 
-
-</script>
-<body>
-
-<div class="container">
-    <div style="background: #E6E6E6; height: 50px; display: flex; flex-direction: row; justify-content: space-between;">
-        <div><h1><a href="http://localhost:8080/">ECO Platform</a></h1></div>
-        <div style="display: flex; align-items: center;">
-            <div>2023.02.09 15:07 맑음 -2도 사업그룹/현장명</div>
-            <select>
-                <option value="">1태양광발전소</option>
-                <option value="">2태양광발전소</option>
-                <option value="">3태양광발전소</option>
-            </select>
-            <div>사용자명</div>
-        </div>
-    </div>
-
-    <div style="display: flex;">
-        <div style="background: #E6E6E6; width: 10%; height: 1600px;">
-            <div>
-                <h1 style="padding: 20px 20px; color: black;">xEMS</h1>
-                <ul>
-                    <li class="make-li"><button type="button" th:text="대시보드" th:onclick="|location.href='@{http://localhost:8080/}'|"></button></li>
-                    <li class="make-li"><button type="button" th:text="계통도" th:onclick="|location.href='@{http://localhost:8080/familyTree}'|"></button></li>
-                    <li class="make-li"><button type="button" th:text="인버터" th:onclick="|location.href='@{http://localhost:8080/invert}'|"></button></li>
-                    <li class="make-li"><button type="button" th:text="접속함" th:onclick="|location.href='@{http://localhost:8080/chStatus}'|"></button></li>
-                    <li class="make-li"><button type="button" th:text="트랜드" th:onclick="|location.href='@{http://localhost:8080/trend}'|"></button></li>
-                    <li class="make-li"><button type="button" th:text="보고서" th:onclick="|location.href='@{http://localhost:8080/report}'|"></button></li>
-                    <li class="make-li"><button type="button" th:text="알람" th:onclick="|location.href='@{http://localhost:8080/alarm}'|"></button></li>
-                    <li class="make-li"><button type="button" th:text="설정" th:onclick="|location.href='@{http://localhost:8080/setting}'|"></button></li>
-                    <li class="make-li"><button type="button" th:text="고객센터" th:onclick="|location.href='@{http://localhost:8080/csCenter}'|"></button></li>
-                </ul>
-            </div>
-            <div style="margin-top: 500px;">
-                <div>발전용량</div>
-                <div>999.75 KWp</div>
-                <div>금일발전량</div>
-                <div>20968.0 KWp</div>
-            </div>
-        </div>
-
-        <!-- 컨텐츠영역 시작 -->
-        <div class="demo-container" style="">
-            <h1>접속함(채널상태)</h1>
-            <div id="data-grid-demo">
-                <div class="long-title"><h3 style="background-color: #E6E6E6; text-align: center;">PPT_18_PAGE</h3></div>
-                <div style="display: flex; height: 50vh;">
-                    <div id="pie18" style="width: 50%;"></div>
-                    <div id="pie1" style="width: 50%;"></div>
-                </div>
-                <div class="long-title"><h3 style="background-color: #E6E6E6; text-align: center;">PPT_19_PAGE</h3></div>
-                <div class="demo-container">
-                    <div id="chart19"></div>
-                </div>
-                <div class="long-title"><h3 style="background-color: #E6E6E6; text-align: center;">그리드샘플</h3></div>
-                <div id="gridContainer"></div>
-            </div>
-        </div>
-
-</body>
 </html>

@@ -1,32 +1,17 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head>
-  <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
-  <script type="text/javascript" th:src="@{/js/dx.all.js}"></script>
-  <script type="text/javascript" th:src="@{/js/leeni_dxchart.js}"></script>
-  <script type="text/javascript" th:src="@{/js/leeni_dxdatagrid.js}"></script>
-  <script type="text/javascript" th:src="@{/js/leeni_dxCircularGauge.js}"></script>
-  <script type="text/javascript" th:src="@{/js/leeni_dxPieChart.js}"></script>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+<th:block layout:fragment="script">
   <script type="text/javascript" th:src="@{/js/userSetting.js}"></script>
-
-  <link th:href="@{/css/layer_popup.css}" rel="stylesheet" >
-  <link th:href="@{/css/dx.light.css}" rel="stylesheet" >
-  <link th:href="@{/css/home.css}" rel="stylesheet">
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<script th:inline="javascript">
-  window.onload = function (){
-
-  }
-
-</script>
-<body>
+</th:block>
+  <div layout:fragment="content">
 <div id="contents_wrap">
   <div class="cont_header">
     <h1 class="page_title">
       <img src="../images/menu_icon08.png" alt="">
-      <span>발전소설정</span>
+      <span>사용자설정</span>
     </h1>
     <p class="page_navi">
       <span>태양광 모니터링</span>&gt;<span>설정</span>&gt;<span class="bold_color">발전소설정</span>
@@ -46,8 +31,6 @@
     </div> <!-- table_wrapEnd -->
   </div> <!-- cont_mainEnd -->
 </div> <!-- contents_wrapEnd -->
-
-
 
 
 <div class="popup_layer" id="popup_layer" style="display: none;">
@@ -120,5 +103,5 @@
     </div>
   </div>
 </div>
-</body>
+  </div>
 </html>

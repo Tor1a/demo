@@ -59,6 +59,6 @@ function onChoiceDelete(dxGrid) {
     alert('keys: ' + arrKey);
 }
 
-const dblRowClick = () => {
-
+function dblRowClick(){
+    alert('test');
 }
