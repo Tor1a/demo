@@ -1,0 +1,60 @@
+	function wrapWindowByMask(){
+        //화면의 높이와 너비를 구한다.
+        var maskHeight = $(document).height();  
+        var maskWidth = $(window).width();  
+
+        //마스크의 높이와 너비를 화면 것으로 만들어 전체 화면을 채운다.
+        $('#mask').css({'width':maskWidth,'height':maskHeight});  
+
+
+        $('#mask').fadeTo("opacity",0.6);   
+    }
+
+    $(document).ready(function(){
+        //검은 막 띄우기
+        $('.btn-click01').click(function(e){
+            e.preventDefault();
+            wrapWindowByMask();
+        });
+    });
+
+	$(document).ready(function(){
+		$('.btn-click01').click(function(){
+			var $href = $(this).attr('href');
+			layer_popup($href);
+		});
+    function layer_popup(el){
+
+        var $el = $(el);//레이어의 id를 $el 변수에 저장
+        var isDim = $el.prev().hasClass('dimBg');//dimmed 레이어를 감지하기 위한 boolean 변수
+
+        isDim ? $('.dim-layer').fadeIn() : $el.fadeIn();
+
+        var $elWidth = ~~($el.outerWidth()),
+            $elHeight = ~~($el.outerHeight()),
+            docWidth = $(document).width(),
+            docHeight = $(document).height();
+
+        // 화면의 중앙에 레이어를 띄운다.
+        if ($elHeight < docHeight || $elWidth < docWidth) {
+            $el.css({
+                marginTop: -$elHeight /2,
+                marginLeft: -$elWidth/2
+            })
+        } else {
+            $el.css({top: 0, left: 0});
+        }
+
+        $el.find('a.btn-layerClose').click(function(){
+            isDim ? $('.dim-layer').fadeOut() : $el.fadeOut(); // 닫기 버튼을 클릭하면 레이어가 닫힌다.
+			$('#mask').fadeOut();
+            return false;
+        });
+
+        $('.layer .dimBg').click(function(){
+            $('.dim-layer').fadeOut();
+            return false;
+        });
+
+    }
+	});

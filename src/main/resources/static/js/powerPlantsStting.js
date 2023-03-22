@@ -2,13 +2,13 @@
 $( document ).ready(function() {
 
    // dxdatagrid 부분----------------------------------------------
-    dataGrid();
+    ppDataGrid();
 }); // ready 함수 끝
 
-function dataGrid(){
+function ppDataGrid(){
     let datagrid = new dxdatagrid();
 
-    let bowl = [['삭제', false, true, true, 'trash', onChoiceDelete], ['신규등록', false, true, true, 'trash', onChoiceUpdate]];
+    let bowl = [['사용안함', false, true, true, 'trash', onChoiceDelete], ['신규등록', false, true, true, 'trash', onChoiceUpdate]];
     let num = bowl.length;
 
     datagrid.setToolbar(

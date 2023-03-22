@@ -7,6 +7,7 @@
     <link th:href="@{/css/contents.css}" rel="stylesheet">
     <link th:href="@{/css/main_menu.css}" rel="stylesheet">
     <link th:href="@{/css/reset.css}" rel="stylesheet">
+    <link th:href="@{/css/sumoselect.css}" rel="stylesheet">
     <link th:href="@{/css/layer_popup.css}" rel="stylesheet" >
     <link th:href="@{/css/dx.light.css}" rel="stylesheet" >
     <link th:href="@{/css/home.css}" rel="stylesheet">
@@ -14,9 +15,11 @@
     <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/dx.all.js}"></script>
     <script type="text/javascript" th:src="@{/js/leeni_dxchart.js}"></script>
-    <script type="text/javascript" th:src="@{/js/leeni_dxdatagrid.js}"></script>
+    <script type="text/javascript" th:src="@{/js/dxDataGrid.rowspan.js}"></script>
     <script type="text/javascript" th:src="@{/js/leeni_dxCircularGauge.js}"></script>
+    <script type="text/javascript" th:src="@{/js/leeni_dxdatagrid.js}"></script>
     <script type="text/javascript" th:src="@{/js/leeni_dxPieChart.js}"></script>
+    <script type="text/javascript" th:src="@{/js/leeni_dxtreelist.js}"></script>
 <!--    <script type="text/javascript" th:src="@{/js/jquery-1.12.0.min.js}"></script>-->
     <script type="text/javascript" th:src="@{/js/main_menu.js}"></script>
     <script type="text/javascript" th:src="@{/js/mo_main_menu.js}"></script>
@@ -24,12 +27,48 @@
     <script type="text/javascript" th:src="@{/js/powerPlantsStting.js}"></script>
     <script type="text/javascript" th:src="@{/js/userSetting.js}"></script>
     <script type="text/javascript" th:src="@{/js/RTU.js}"></script>
-
+    <script type="text/javascript" th:src="@{/js/csStatus.js}"></script>
+<!--    <script type="text/javascript" th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js}"></script>-->
+    <script type="text/javascript" th:src="@{js/forcasting.js}"></script>
+    <script type="text/javascript" th:src="@{/js/trend.js}"></script>
+    <script type="text/javascript" th:src="@{/js/data.js}"></script>
+    <script type="text/javascript" th:src="@{/js/report.js}"></script>
+    <script type="text/javascript" th:src="@{/js/alarm1.js}"></script>
+    <script type="text/javascript" th:src="@{/js/alarm2.js}"></script>
+    <script type="text/javascript" th:src="@{/js/alarm3.js}"></script>
+    <script type="text/javascript" th:src="@{/js/csCenter2.js}"></script>
 
 
     <th:block layout:fragment="script"></th:block>
     <th:block layout:fragment="css"></th:block>
     <script>
+
+        //기상청 OpenApi
+        //1. new Weather() 생성
+        let weather = new Weather();
+
+        function weatherRun(longitude, latitude) {
+
+            //2. 기상정보를 취득한 위/경도 지정
+            weather.setPlace(longitude, latitude);
+
+            //3. weather callback 등록 : weather.setPlace()을 호출하면 callback이 불려지고, 이후에는 매 45분마다 호출이 됨
+            document.addEventListener("weather", function(e) {
+                //날씨와 하늘정보에 대한 이미지를 표시
+                console.log('하늘상태:' + e.sky + ' 기온:' + e.temperature);
+                document.getElementById("result").innerHTML = '하늘상태 [맑음(1), 구름많음(3), 흐림(4)] :' + e.sky + ' 기온:' + e.temperature;
+            });
+            //////////////////////////////////////////////////////////
+        }
+        $( document ).ready(function() {
+            //{address_name: '서울 영등포구 양평동2가 29-23', b_code: '1156012600', h_code: '1156061000', main_address_no: '29', mountain_yn: 'N', …}address_name: "서울 영등포구 영등포로 33"address_type: "ROAD_ADDR"road_address: {address_name: '서울 영등포구 영등포로 33', building_name: '목동비즈타워', main_building_no: '33', region_1depth_name: '서울', region_2depth_name: '영등포구', …}x: "126.885222271529"y: "37.5232920131718"[[Prototype]]: Objectconstructor: ƒ Object()hasOwnProperty: ƒ hasOwnProperty()isPrototypeOf: ƒ isPrototypeOf()propertyIsEnumerable: ƒ propertyIsEnumerable()toLocaleString: ƒ toLocaleString()toString: ƒ toString()valueOf: ƒ valueOf()__defineGetter__: ƒ __defineGetter__()__defineSetter__: ƒ __defineSetter__()__lookupGetter__: ƒ __lookupGetter__()__lookupSetter__: ƒ __lookupSetter__()__proto__: (...)get __proto__: ƒ __proto__()set __proto__: ƒ __proto__()length: 1[[Prototype]]: Array(0)
+            //격자 좌표 - x:58 y:126
+            let longitude = 126.885222271529;	//x
+            let latitude = 37.5232920131718;	//y
+
+            weatherRun(longitude, latitude);
+        });
+
 
 
         function pg(num){
@@ -37,47 +76,146 @@
                 case 1:
                 $.ajax({
                    type:'GET',
-                   url: 'ppSetting',
+                   url: '/dashBoard',
                     success: function (data){
-
                         document.getElementById('contents').innerHTML = data;
                         dataGrid();
-
                     }
-
                 });
                 break;
                 case 2:
-                //     $.ajax({
-                //     type:'GET',
-                //     url: 'userSetting',
-                //     success: function (data){
-                //         document.getElementById('contents').innerHTML = data;
-                //
-                //         // console.log(data);
-                //     }
-                //
-                // });
+                    $.ajax({
+                        type:'GET',
+                        url: 'ppSetting',
+                        success: function (data){
+                            document.getElementById('contents').innerHTML = data;
+
+                        }
+                    });
                 break;
                 case 3:
+                    $.ajax({
+                        type:'GET',
+                        url: 'invert',
+                        success: function (data){
+                            document.getElementById('contents').innerHTML = data;
+
+                        }
+                    });
+                break;
+                case 4:
+                    $.ajax({
+                        type:'GET',
+                        url: 'chStatus',
+                        success: function (data){
+                            document.getElementById('contents').innerHTML = data;
+                            csStatusDxDataGrid();
+                            csStatusDxPieChart();
+                            csStatusDxChart();
+                        }
+                    });
+                    break;
+                case 5:
+                    $.ajax({
+                        type:'GET',
+                        url: 'trend',
+                        success: function (data){
+                            document.getElementById('contents').innerHTML = data;
+                            trendChart();
+                        }
+                    });
+                    break;
+                case 6:
+                    $.ajax({
+                        type:'GET',
+                        url: 'report',
+                        success: function (data){
+                            document.getElementById('contents').innerHTML = data;
+                            reportStart();
+                        }
+                    });
+                    break;
+                case 7:
+                    $.ajax({
+                        type:'GET',
+                        url: 'alarm',
+                        success: function (data){
+                            document.getElementById('contents').innerHTML = data;
+                            alarm1Start();
+                        }
+                    });
+                    break;
+                case 8:
+                    $.ajax({
+                        type:'GET',
+                        url: 'alarm2',
+                        success: function (data){
+                            document.getElementById('contents').innerHTML = data;
+                            alarm2Start();
+                        }
+                    });
+                    break;
+                case 9:
+                    $.ajax({
+                        type:'GET',
+                        url: 'alarm3',
+                        success: function (data){
+                            document.getElementById('contents').innerHTML = data;
+                            alarm3Start();
+                        }
+                    });
+                    break;
+                case 10:
+                    $.ajax({
+                        type:'GET',
+                        url: 'ppSetting',
+                        success: function (data){
+                            document.getElementById('contents').innerHTML = data;
+                            ppDataGrid();
+                        }
+                    });
+                    break;
+                case 11:
+                    $.ajax({
+                        type:'GET',
+                        url: 'userSetting',
+                        success: function (data){
+                            document.getElementById('contents').innerHTML = data;
+                            userDatagrid();
+                        }
+                    });
+                    break;
+                case 12:
                     $.ajax({
                         type:'GET',
                         url: 'RTU',
                         success: function (data){
                             document.getElementById('contents').innerHTML = data;
-
-                            // console.log(data);
+                            RTUdatagrid();
                         }
-
                     });
-                break;
-                case 4:
-                    $.a
                     break;
-                case 5:
-                    alert('test2');
-            }
+                case 13:
+                    $.ajax({
+                        type:'GET',
+                        url: 'ppSetting',
+                        success: function (data){
+                            document.getElementById('contents').innerHTML = data;
 
+                        }
+                    });
+                    break;
+                case 14:
+                    $.ajax({
+                        type:'GET',
+                        url: 'csCenter2',
+                        success: function (data){
+                            document.getElementById('contents').innerHTML = data;
+                            csCenter2Start();
+                        }
+                    });
+                    break;
+            }
         }
     </script>
 </th:block>

@@ -136,7 +136,13 @@ body {
 	font-weight: 600;
 }
 
-.header_cont ul > li > span{
+.header_cont ul > li .spot_name {
+	vertical-align: middle;
+	padding: 0 5px;
+	margin-right: 5px;
+}
+
+.header_cont ul > li {
 	vertical-align: middle;
 	padding: 0 5px;
 	margin-right: 5px;
@@ -162,7 +168,7 @@ body {
 	height: 30px;
 	font-family: 'NotoSansKR';
 	padding: 0 10px;
-	margin-right: 10px;
+	margin-right: 0;
 	border: 1px solid #AAA;
 	border-radius: 5px;
 }
@@ -210,7 +216,7 @@ body {
 #wrap_footer h6 {
 	color: #394453;
 	font-family: 'NotoSansKR';
-	font-size: 0.95;
+	font-size: 0.9em;
 	font-weight: 600;
 	line-height: 50px;
 	text-align: left;
@@ -228,6 +234,7 @@ body {
 		/* Basic */
 		html, body {
 		}
+
 	}
 
 
@@ -274,7 +281,6 @@ body {
 
 		.header_cont ul > li {
 			flex:auto;
-			margin-right: 10px;
 		}
 
 		.header_cont ul:first-child {
@@ -285,7 +291,6 @@ body {
 		.header_cont ul:last-child {
 			font-family: 'NotoSansKR';
 			font-size: 0.85em;
-			margin-left: 20px;
 		}
 
 
@@ -294,7 +299,7 @@ body {
 		}
 
 		.cont_logo {
-			width: 84%;
+			width: 80%;
 			text-align: left;
 			padding-left: 50px;
 		}
@@ -329,13 +334,16 @@ body {
 		.common_input {
 			width: 45% !important;
 		}
+		.spot_form ul {
+			padding-right: 0;
+		}
 
 		.spot_form ul:first-child {
-			width: 47% !important;
+			width: 45% !important;
 		}
 
 		.spot_form ul:last-child {
-			width: 45%;
+			width: 52%;
 			padding-top: 0;
 		}
 
@@ -368,6 +376,14 @@ body {
 			margin-top: 44px;
 		}
 
+		.page_title {
+			line-height: 30px !important;
+		}
+
+		.page_navi {
+			line-height: 30px !important;
+		}
+
 		#contents .cont_page {
 			margin-top: 10px !important;
 		}
@@ -394,6 +410,10 @@ body {
 		.header_cont ul:last-child {
 			width: 50% !important;
 			margin-left: 0;
+		}
+
+		.header_cont  .user_name {
+			display: none;
 		}
 
 		.cont_logo {
@@ -427,39 +447,35 @@ body {
 		} 
 
 		.header_cont {
-			height: 100px;
+			height: 50px;
+		}
+
+		.header_cont ul > li {	
+			flex:none;
+			margin-right: 0;
 		}
 
 		.header_cont ul:first-child {
-			width: 65% !important;
+			width: 45% !important;
+			padding-right: 0;
+			margin-left: 5px !important;
 		}
+
+		.header_cont ul:first-child li {
+			width: 100%;
+		}
+
 
 		.header_cont ul:last-child {
-			height: 100px;
-		}
-
-		.header_cont ul > li {
-			flex:none  !important;
-		}
-
-		.header_cont ul:last-child {
+			width: 52% !important;
 			font-family: 'NotoSansKR';
-			font-size: 0.95em;
-			width: 98% !important;
-			padding-left: 3%;
+			font-size: 0.85em;
+			padding-right: 0;
 		}
 
 		.spot_form ul {
 				display: block;
 			}
-
-		.spot_form ul:first-child {
-			width: 100% !important;
-		}
-
-		.spot_form ul:first-child >li {
-			width: 100% !important;
-		}
 
 		.treeview-menu {
 			background-color: #FFF !important;
@@ -471,7 +487,7 @@ body {
 		}
 
 		#contents {
-			margin-top: 95px !important;
+			margin-top: 45px !important;
 		}
 
 		.common_input {

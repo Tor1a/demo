@@ -12,7 +12,3 @@ $(function(){
   });
   
 });
-
-const dashboard = () =>{
-  alert('test');
-}

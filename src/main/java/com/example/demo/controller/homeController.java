@@ -3,68 +3,81 @@ package com.example.demo.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class homeController {
     @GetMapping("/")
-    public String home(){
-        ModelAndView mav = new ModelAndView("powerPlantsSetting");
-        System.out.println(mav);
-        return "home";
+    public ModelAndView home(){
+        ModelAndView mav = new ModelAndView("home");
+        return mav;
+    }
+    @GetMapping("/dashBoard")
+    public ModelAndView dashBoard(){
+        ModelAndView mav = new ModelAndView("dashBoard");
+        return mav;
     }
     @GetMapping("/familyTree")
     public String familyTree(){
         return "familyTree";
     }
     @GetMapping("/invert")
-    public String invert(){
-        return "invert";
+    public ModelAndView invert(){
+        ModelAndView mav = new ModelAndView("invert");
+        return mav;
     }
     @GetMapping("/chStatus")
-    public String chStatus(){
-        return "chStatus";
+    public ModelAndView chStatus(){
+        ModelAndView mav = new ModelAndView("ECO_EMS_CONBOX ");
+        return mav;
     }
 
     @GetMapping("/trend")
     public String trend(){
-        return "trend";
+        return "ECO_EMS_TREND ";
     }
     @GetMapping("/report")
     public String report(){
-        return "report";
+        return "ECO_EMS_REPORT ";
     }
     @GetMapping("/alarm")
     public String alarm(){
-        return "alarm";
+        return "ECO_EMS_ALARM ";
     }
     @GetMapping("/alarm2")
     public String alarm2(){
-        return "alarm2";
+        return "ECO_EMS_ALARM_ANA ";
     }
     @GetMapping("/alarm3")
     public String alarm3(){
-        return "alarm3";
+        return "ECO_EMS_ALARM_STA ";
     }
     @GetMapping("/ppSetting")
     @ResponseBody
     public ModelAndView ppSetting(){
-        ModelAndView mav = new ModelAndView("powerPlantsSetting");
+        ModelAndView mav = new ModelAndView("ECO_EMS_POWER_PLT ");
+        return mav;
+    }
+    @GetMapping("/userSetting")
+    @ResponseBody
+    public ModelAndView userSetting(){
+        ModelAndView mav = new ModelAndView("ECO_EMS_SETTING_USE ");
+        return mav;
+    }
+
+    @GetMapping("/RTU")
+    public ModelAndView RTU(){
+        ModelAndView mav = new ModelAndView("ECO_EMS_SETTING_RTU ");
         return mav;
     }
 
     @GetMapping("/csCenter2")
     public String csCenter(){
-        return "csCenter2";
+        return "ECO_EMS_CUSTOMER ";
     }
 
-    @GetMapping("/userSetting")
-    public String userSetting(){
-        return "userSetting";
-    }
 
-    @GetMapping("/RTU")
-    public String RTU(){
-        return "RTU";
-    }
+
+
 }

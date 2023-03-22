@@ -1,4 +1,4 @@
-    $(document).ready(function(){
+    $(document).ready(function(){    
 
 		$(".slide_menu").click(function() {
 		   $(this).next(".treeview-menu").stop().slideToggle(300);
@@ -28,4 +28,36 @@
 		$("#contents").animate({'margin-left':'220px','width':'88.5%'});
 		});
 
+		$(".treeview-menu button").click(function(){
+		   $(this).addClass('on').siblings().removeClass('on');
+		});
+
 	});
+
+
+
+
+	/* 탭메뉴*/
+
+	$(function(){
+		$(document).ready(function(){
+			var i=0;
+			$('#contents_wrap .contents').eq(0).show().siblings().hide();
+			
+			$('.tab_menu a').click(function(){
+				i=$('.tab_menu a').index($(this));
+				$('#contents_wrap .contents').eq(i).show().siblings().hide();
+				$(this).parent().addClass('tab_on').siblings().removeClass('tab_on');
+			});
+		});
+	});
+
+
+
+
+
+
+
+
+
+

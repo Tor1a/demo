@@ -3,108 +3,195 @@
 				xmlns:th="http://www.thymeleaf.org"
 				xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 				layout:decorate="~{layout/default_layout}">
-<th:block layout:fragment="script">
-<!--	<script type="text/javascript" th:src="@{/js/home.js}"></script>-->
-</th:block>
 <div layout:fragment="content">
-	<div style="width: 90%;">
-		<div style="display: flex; flex-wrap: wrap; justify-content: space-evenly; margin-top: 50px;">
-			<div class="item">탄소저감량<div style="font-size: 3.5em;">5150</div></div>
-			<div class="item">금일발전량<div style="font-size: 3.5em;">5150</div></div>
-			<div class="item">금일발전시간<div style="font-size: 3.5em;">5150</div></div>
-			<div class="item">금월발전량<div style="font-size: 3.5em;">5150</div></div>
-			<div class="item">금년발전량<div style="font-size: 3.5em;">5150</div></div>
-			<div class="item">누적발전량<div style="font-size: 3.5em;">5150</div></div>
-			<div class="item">전일발전량<div style="font-size: 3.5em;">5150</div></div>
-			<div class="item">전일발전시간<div style="font-size: 3.5em;">5150</div></div>
-			<div class="item">전월발전량<div style="font-size: 3.5em;">5150</div></div>
-			<div class="item">전년발전량<div style="font-size: 3.5em;">5150</div></div>
-		</div>
-		<div style="display: flex; width: 100%; height: 50px; background: #E6E6E6; align-items: center; justify-content: space-between;">
-			<div>Power Status (인버터 제조사, 모듈 제조사)</div>
-			<div><input id="inverterCheckBox" type="checkbox" onclick="invMark(this);">개별 인버터 표시</div>
-		</div>
+	<div id="contents_wrap" class="dashboard">
+		<div class="cont_header">
+			<h1 class="page_title">
+				<img src="../images/menu_icon01.png" alt="">
+				<span>대시보드</span>
+			</h1>
+			<p class="page_navi">
+				<span>태양광 모니터링</span>&gt;<span class="bold_color">대시보드</span>
+			</p>
+		</div> <!-- cont_headerEnd -->
+		<div class="cont_main">
+			<div class="chart_wrap">
+				<div>
+					<div class="Generation_wrap">
+						<p class="Generation_title">Total Generation <span class="title_line"></span></p>
+						<div class="Generation_form">
+							<span class="Generation_tit">탄소저감량</span>
+							<p>
+								<span class="Generation_data">1,234</span>
+								<span class="Generation_sym">ktCO2</span>
+							</p>
+						</div>
+					</div>
+					<div class="Generation_wrap">
+						<p class="Generation_title">Yearly Generation <span class="title_line"></span></p>
+						<div class="Generation_form">
+							<span class="Generation_tit">누적발전량</span>
+							<p>
+								<span class="Generation_data">11,579</span>
+								<span class="Generation_sym">Mwh</span>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="floor">
+					<div class="Generation_wrap">
+						<p class="Generation_title">Mothly Generation <span class="title_line"></span></p>
+						<div class="Generation_form comparison">
+							<div class="data_form">
+								<span class="Generation_tit">전월</span>
+								<p>
+									<span class="Generation_data">#,###</span>
+									<span class="Generation_sym">kWh</span>
+								</p>
+							</div>
+							<div class="data_form">
+								<span class="Generation_tit">금월</span>
+								<p>
+									<span class="Generation_data">#,###</span>
+									<span class="Generation_sym">kWh</span>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="Generation_wrap">
+						<p class="Generation_title">Daily Generation <span class="title_line"></span></p>
+						<div class="Generation_form comparison">
+							<div class="data_form">
+								<span class="Generation_tit">전일</span>
+								<p>
+									<span class="Generation_data">#,###</span>
+									<span class="Generation_sym">kWh</span>
+								</p>
+							</div>
+							<div class="data_form">
+								<span class="Generation_tit">금일</span>
+								<p>
+									<span class="Generation_data">#,###</span>
+									<span class="Generation_sym">kWh</span>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="Generation_wrap">
+						<p class="Generation_title">Generation Time <span class="title_line"></span></p>
+						<div class="Generation_form comparison">
+							<div class="data_form">
+								<span class="Generation_tit">전일</span>
+								<p>
+									<span class="Generation_data">#,###</span>
+									<span class="Generation_sym">Hour</span>
+								</p>
+							</div>
+							<div class="data_form">
+								<span class="Generation_tit">금일</span>
+								<p>
+									<span class="Generation_data">#,###</span>
+									<span class="Generation_sym">Hour</span>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div> <!-- chart_wrapEnd -->
+			<div class="chart_wrap">
+				<p class="chart_tit">인버터 제조사, 모듈 제조사 (발전소설정기준)
+					<a href="" class="slide_btn"><input type="checkbox" class="checkbox">개별 인버터 표시</a>
+				</p>
+				<div class="chart_container">
+					<div class="graph_wrap">
+						<div class="Progress_form">
+							<p class="graph_tit">INV#1 (58.6%)</p>
+							<div class="Progress_graph">
 
-		<div id="eachInverter" style="display: none; flex-wrap: wrap; justify-content: space-evenly; margin-top: 50px;">
-			<div class="item2">
-				INV#1 (58.6%)<br>
-				58.6 / 100 kW<br>
-				gauge표시<br>
-			</div>
-			<div class="item2">
-				INV#2 (58.6%)<br>
-				58.6 / 100 kW<br>
-				gauge표시<br>
-			</div>
-			<div class="item2">
-				INV#3 (58.6%)<br>
-				58.6 / 100 kW<br>
-				gauge표시<br>
-			</div>
-			<div class="item2">
-				INV#4 (58.6%)<br>
-				58.6 / 100 kW<br>
-				gauge표시<br>
-			</div>
-			<div class="item2">
-				INV#5 (58.6%)<br>
-				58.6 / 100 kW<br>
-				gauge표시<br>
-			</div>
-			<div class="item2">
-				INV#6 (58.6%)<br>
-				58.6 / 100 kW<br>
-				gauge표시<br>
-			</div>
-			<div class="item2">
-				INV#7 (58.6%)<br>
-				58.6 / 100 kW<br>
-				gauge표시<br>
-			</div>
-			<div class="item2">
-				INV#8 (58.6%)<br>
-				58.6 / 100 kW<br>
-				gauge표시<br>
-			</div>
-		</div>
+							</div>
+						</div>
+						<div class="Progress_form">
+							<p class="graph_tit">INV#2 (58.6%)</p>
+							<div class="Progress_graph">
 
-		<div style="display:flex; margin: 30px 0px; justify-content: space-evenly;">
-			<div id="triangleMarker4"></div>
-			<div id="triangleMarker2"></div>
-			<div id="triangleMarker3"></div>
-		</div>
+							</div>
+						</div>
+						<div class="Progress_form">
+							<p class="graph_tit">INV#3 (58.6%)</p>
+							<div class="Progress_graph">
 
-		<div style="display: flex;">
-			<div style="display: flex; width: 60%; height: 50px; background: #E6E6E6; align-items: center;">
-				<div>발전량 추이 : </div>
-				<div style="margin-left: 15px;">금일(10분 단위)</div>
-				<div style="margin-left: 15px;">금일(1시간 단위)</div>
-				<div style="margin-left: 15px;">최근30일(1일 단위)</div>
-			</div>
-			<div style="display: flex; width: 40%; height: 50px; background: #E6E6E6; align-items: center; justify-content: space-between;">
-				<div>알람</div>
-				<div>자세히보기</div>
-			</div>
-		</div>
+							</div>
+						</div>
+						<div class="Progress_form">
+							<p class="graph_tit">INV#4 (58.6%)</p>
+							<div class="Progress_graph">
 
-		<div style="display: flex;">
-			<div id="chart21" style="width: 60%; height: 400px;"></div>
-			<div id="" style="width: 40%; background: #F2F2F2;">
-				<ul>
-					<li class="make-li" style="margin: 50px 0px;"><a href="">
-						인버터[INV#7] Standby 22.12.01 17:33:26
-					</a></li>
-					<li class="make-li" style="margin: 50px 0px;"><a href="">
-						인버터[INV#4] Standby 22.12.01 17:33:26
-					</a></li>
-					<li class="make-li" style="margin: 50px 0px;"><a href="">
-						접속함[CON#8] 차단기 Trip 감지 22.12.01 17:33:26
-					</a></li>
-				</ul>
-			</div>
-		</div>
+							</div>
+						</div>
+						<div class="Progress_form">
+							<p class="graph_tit">INV#5 (58.6%)</p>
+							<div class="Progress_graph">
 
-	</div>
-</div>
-</div>
+							</div>
+						</div>
+						<div class="Progress_form">
+							<p class="graph_tit">INV#6 (58.6%)</p>
+							<div class="Progress_graph">
+
+							</div>
+						</div>
+						<div class="Progress_form">
+							<p class="graph_tit">INV#7 (58.6%)</p>
+							<div class="Progress_graph">
+
+							</div>
+						</div>
+						<div class="Progress_form">
+							<p class="graph_tit">INV#8 (58.6%)</p>
+							<div class="Progress_graph">
+
+							</div>
+						</div>
+					</div><!-- graph_wrapEnd -->
+				</div>
+				<div class="graph_wrap">
+					<div class="gauge_form">
+						<div class="gauge_graph">
+
+						</div>
+						<p class="graph_tit">현재발전출력 (kW)</p>
+					</div>
+					<div class="gauge_form">
+						<div class="gauge_graph">
+
+						</div>
+						<p class="graph_tit">인버터(DC/AC) 변환효율 (%)</p>
+					</div>
+					<div class="gauge_form">
+						<div class="gauge_graph">
+
+						</div>
+						<p class="graph_tit">발전효율 (%)</p>
+					</div>
+				</div><!-- graph_wrapEnd -->
+			</div> <!-- chart_wrapEnd -->
+			<div class="multipleChart_wrap">
+				<div class="chart_wrap">
+					<div class="chart_tit">
+						<span>발전량추이</span>
+						<ul class="tab_menu">
+							<li class="tab_tit tab_on"><a href="#">금일 (10분 단위)</a></li>
+							<li class="tab_tit"><a href="#">금일 (1시간 단위)</a></li>
+							<li class="tab_tit"><a href="#">최근 30일 (1일 단위)</a></li>
+						</ul>
+					</div>
+					<div class="chart_container"></div>
+				</div> <!-- chart_wrapEnd -->
+				<div class="chart_wrap">
+					<p class="chart_tit">알람<a href="" class="slide_btn">자세히보기</a></p>
+					<div class="chart_container"></div>
+				</div> <!-- chart_wrapEnd -->
+			</div> <!-- multipleChart_wrapEnd -->
+		</div> <!-- cont_mainEnd -->
+	</div> <!-- contents_wrapEnd -->
 </html>

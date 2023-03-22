@@ -1,0 +1,52 @@
+<div id="contents_wrap">
+	<div class="cont_header">
+		<h1 class="page_title">
+			<img src="../images/menu_icon06.png" alt="">
+			<span>보고서</span>
+		</h1>
+		<p class="page_navi">
+			<span>태양광 모니터링</span>&gt;<span class="bold_color">보고서</span>
+		</p>
+	</div> <!-- cont_headerEnd -->
+	<div class="cont_main">
+		<div class="search_wrap">
+			<p>
+				<span class="search_tit">장비종류</span>
+				<select name="type" onchange="selectButtonReport()" class="common_select">
+					<option value="">전체</option>
+					<option value=""></option>
+				</select>
+			</p>
+			<p>
+				<span class="search_tit">장비구분</span>
+				<select name="div" onchange="selectButtonReport()" class="common_select">
+					<option value="">전체</option>
+					<option value=""></option>
+				</select>
+			</p>
+			<p>
+				<span class="search_tit">보고서</span>
+				<select name="daily" onchange="selectButtonReport()" class="common_select">
+					<option value="">전체</option>
+					<option value=""></option>
+				</select>
+			</p>
+			<p>
+				<span class="search_tit">자료형태</span>
+				<select name="unit" onchange="selectButtonReport()" class="common_select">
+					<option value="">전체</option>
+					<option value=""></option>
+				</select>
+			</p>
+			<p>
+				<span class="search_tit">기간</span>
+				<input class="common_date" type="date" id="reportStartDay" onblur="selectButtonReport()">
+				<span>~</span>
+				<input class="common_date" type="date" id="reportEndDay" onblur="selectButtonReport()">
+			</p>
+		</div> <!-- search_wrapEnd -->
+		<div class="table_wrap">
+			<div id="reportGridContainer"></div>
+		</div> <!-- table_wrapEnd -->
+	</div> <!-- cont_mainEnd -->
+</div> <!-- contents_wrapEnd -->

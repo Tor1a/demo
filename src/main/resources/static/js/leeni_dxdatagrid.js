@@ -10,19 +10,26 @@
 	-. 2023.02.01 최초 작성
 ********************************************************/
 function dxdatagrid() {
-	
-    this.dataSource = [];
-    this.showBorders=  true;
+	this.dataSource = [];
+	this.allowColumnResizing = true;         //column width resizing enable
+	this.columnAutoWidth = true;            //column auto width
+	this.columnResizingMode = 'nextColumn';       //column resizing
+
+	this.showColumnLines = true;            //show column line
+	this.showRowLines = true;               //show row line
+	this.showBorders = true;               //Specifies whether the outer borders of the UI component are visible.
+	this.hoverStateEnabled = true;
+	this.onCellPrepared = dxDataGridRowSpan;
 	this.paging = {
 		enabled: false,
 	};
 	this.toolbar = {};
 	this.option = {};
-    this.editing = {};
+	this.editing = {};
 	this.onRowClick = {};
 	this.selection = {};
 	this.columns = [];
-	
+
 }
 
 /**
@@ -122,13 +129,28 @@ dxdatagrid.prototype.setEditingForm = function(dataField, colCount, colSpan, cap
 /**
  * datagrid의 컬럼을 지정
  * server에서 받아온 데이터 컬럼명을 넣어주면 자동으로 값이 바인딩되서 list가 그려진다.
- * data type은 배열 ex) columns = ['Prefix','FirstName','LastName','Position','StateID','BirthDate']
+ * data type은 배열 ex) columns = ['Prefix','FirstName','LastName','Position','StateID','BirthDate']; merges = ['FirstName','Position','BirthDate'];
+ * merge할 필드가 없으면 파라미터를 안보내도 된다.
  * https://js.devexpress.com/Documentation/ApiReference/UI_Components/dxDataGrid/Configuration/columns/
  */
-dxdatagrid.prototype.setColumns = function(columns) {
-	columns.forEach(function(name, type) {
-						this.columns.push( { dataField: name, dataType: type } );
-					}, this);
+dxdatagrid.prototype.setColumns = function(columns, merges) {
+	let push = 'N';
+	columns.forEach(function(column) {
+		if (merges != undefined && merges.length > 0) {
+			merges.forEach(function(merge){
+				if (column == merge) {
+					this.columns.push( { dataField: column, allowMerge: true } );
+					push = 'Y';
+				}
+			}, this);
+			if (push == 'N') {
+				this.columns.push( { dataField: column } );
+			}
+			push = 'N';
+		} else {
+			this.columns.push( { dataField: column } );
+		}
+	}, this);
 };
 
 /**

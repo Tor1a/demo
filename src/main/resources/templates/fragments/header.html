@@ -3,6 +3,7 @@
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 	<div th:fragment="headerFragment">
+
 		<div id="wrap">
 			<header id="wrap_header">
 				<a href="http://localhost:8080" class="cont_logo"><img src="images/logo.png" alt=""></a>
@@ -15,10 +16,11 @@
 						<li>2023.03.09</li>
 						<li><img src="images/weather_icon.png" alt=""></li>
 						<li>13.0°C</li>
+						<label id="result">날씨</label>
 					</ul>
 					<ul>
 						<li>
-							<select class="common_select">
+							<select name="" id="" class="common_select">
 								<option value="">사업그룹 선택</option>
 								<option value=""></option>
 							</select>
@@ -43,66 +45,66 @@
 				</div>
 				<div class="sidebar-menu">
 					<div class="slide_menu">
-						<span class="menu_icon"><img src="images/menu_icon01.png" alt=""></span>
-						<span class="menu_tit">대시보드</span>
+						<button class="menu_icon"><img src="images/menu_icon01.png" alt=""></button>
+						<button class="menu_tit" onclick="pg(1);">대시보드</button>
 					</div>
 					<div class="slide_menu">
-						<span class="menu_icon"><img src="images/menu_icon02.png" alt=""></span>
-						<span class="menu_tit">계통도</span>
+						<button class="menu_icon"><img src="images/menu_icon02.png" alt=""></button>
+						<button class="menu_tit" onclick="pg(2);">계통도</button>
 					</div>
 					<div class="slide_menu">
-						<span class="menu_icon"><img src="images/menu_icon03.png" alt=""></span>
-						<a href="#" class="menu_tit" onclick="pg(5);">인버터</a>
+						<button class="menu_icon"><img src="images/menu_icon03.png" alt=""></button>
+						<button class="menu_tit" onclick="pg(3);">인버터</button>
 					</div>
 					<div class="slide_menu">
-						<span class="menu_icon"><img src="images/menu_icon04.png" alt=""></span>
-						<a href="http://localhost:8080/chStatus">접속함</a>
+						<button class="menu_icon"><img src="images/menu_icon04.png" alt=""></button>
+						<button class="menu_tit"  onclick="pg(4);" >접속함</button>
 					</div>
 					<div class="slide_menu">
-						<span class="menu_icon"><img src="images/menu_icon05.png" alt=""></span>
-						<span class="menu_tit">트렌드</span>
+						<button class="menu_icon"><img src="images/menu_icon05.png" alt=""></button>
+						<button class="menu_tit"  onclick="pg(5);">트렌드</button>
 					</div>
 					<div class="slide_menu">
-						<span class="menu_icon"><img src="images/menu_icon06.png" alt=""></span>
-						<span class="menu_tit">보고서</span>
+						<button class="menu_icon"><img src="images/menu_icon06.png" alt=""></button>
+						<button class="menu_tit"  onclick="pg(6);">보고서</button>
 					</div>
 					<div class="slide_menu">
-						<span class="menu_icon"><img src="images/menu_icon07.png" alt=""></span>
-						<span class="menu_tit tit_LHeight">알람</span>
+						<button class="menu_icon"><img src="images/menu_icon07.png" alt=""></button>
+						<button class="menu_tit tit_LHeight">알람</button>
 						<p class="arrow_form">
 							<span class="arrow_up"></span>
 							<span class="arrow_down"></span>
 						</p>
 					</div>
 					<div class="treeview-menu">
-						<a href="">알림현황</a>
-						<a href="">알림분석</a>
-						<a href="">통신상태</a>
+						<button  onclick="pg(7);">알림현황</button>
+						<button  onclick="pg(8);">알림분석</button>
+						<button  onclick="pg(9);">통신상태</button>
 					</div>
 					<div class="slide_menu">
-						<span class="menu_icon"><img src="images/menu_icon08.png" alt=""></span>
-						<span class="menu_tit">설정</span>
+						<button class="menu_icon"><img src="images/menu_icon08.png" alt=""></button>
+						<button class="menu_tit">설정</button>
 						<p class="arrow_form">
 							<span class="arrow_up"></span>
 							<span class="arrow_down"></span>
 						</p>
 					</div>
 					<div class="treeview-menu">
-						<a href="#" onclick="pg(1);">발전소설정</a>
-						<a href="http://localhost:8080/userSetting">사용자계정</a>
-						<a href="#" onclick="pg(3);">RTU</a>
+						<button  onclick="pg(10);">발전소설정</button>
+						<button  onclick="pg(11);">사용자계정</button>
+						<button  onclick="pg(12);">RTU</button>
 					</div>
 					<div class="slide_menu">
-						<span class="menu_icon"><img src="images/menu_icon09.png" alt=""></span>
-						<span class="menu_tit">고객센터</span>
+						<button class="menu_icon"><img src="images/menu_icon09.png" alt=""></button>
+						<button class="menu_tit">고객센터</button>
 						<p class="arrow_form">
 							<span class="arrow_up"></span>
 							<span class="arrow_down"></span>
 						</p>
 					</div>
 					<div class="treeview-menu">
-						<a href="">공지사항</a>
-						<a href="">문의사항</a>
+						<button  onclick="pg(13);">공지사항</button>
+						<button  onclick="pg(14);">문의사항</button>
 					</div>
 				</div>
 				<div id="mini_display">
@@ -157,53 +159,53 @@
 						<div class="sidebar-menu">
 							<div class="slide_menu">
 								<span class="menu_icon"><img src="images/menu_icon01.png" alt=""></span>
-								<span class="menu_tit">대시보드</span>
+								<button class="menu_tit">대시보드</button>
 							</div>
 							<div class="slide_menu">
 								<span class="menu_icon"><img src="images/menu_icon02.png" alt=""></span>
-								<span class="menu_tit">계통도</span>
+								<button class="menu_tit">계통도</button>
 							</div>
 							<div class="slide_menu">
 								<span class="menu_icon"><img src="images/menu_icon03.png" alt=""></span>
-								<span class="menu_tit">인버터</span>
+								<button class="menu_tit">인버터</button>
 							</div>
 							<div class="slide_menu">
 								<span class="menu_icon"><img src="images/menu_icon04.png" alt=""></span>
-								<span class="menu_tit"><a href="http://localhost:8080/chStatus">접속함</a></span>
+								<button class="menu_tit">접속함</button>
 							</div>
 							<div class="slide_menu">
 								<span class="menu_icon"><img src="images/menu_icon05.png" alt=""></span>
-								<span class="menu_tit">트렌드</span>
+								<button class="menu_tit">트렌드</button>
 							</div>
 							<div class="slide_menu">
 								<span class="menu_icon"><img src="images/menu_icon06.png" alt=""></span>
-								<span class="menu_tit">보고서</span>
+								<button class="menu_tit">보고서</button>
 							</div>
 							<div class="slide_menu">
 								<span class="menu_icon"><img src="images/menu_icon07.png" alt=""></span>
-								<span class="menu_tit tit_LHeight">알람</span>
-								<p class="arrow_form">
-									<span class="arrow_up"></span>
-									<span class="arrow_down"></span>
-								</p>
+								<button class="menu_tit tit_LHeight">알람</button>
+									<p class="arrow_form">
+										<span class="arrow_up"></span>
+										<span class="arrow_down"></span>
+									</p>
 							</div>
 							<div class="treeview-menu">
-								<a href="">알림현황</a>
-								<a href="">알림분석</a>
-								<a href="">통신상태</a>
+								<button>알림현황</button>
+								<button>알림분석</button>
+								<button>통신상태</button>
 							</div>
 							<div class="slide_menu">
 								<span class="menu_icon"><img src="images/menu_icon08.png" alt=""></span>
-								<span class="menu_tit">설정</span>
-								<p class="arrow_form">
-									<span class="arrow_up"></span>
-									<span class="arrow_down"></span>
-								</p>
+								<button class="menu_tit">설정</button>
+									<p class="arrow_form">
+										<span class="arrow_up"></span>
+										<span class="arrow_down"></span>
+									</p>
 							</div>
 							<div class="treeview-menu">
-								<a href="http://localhost:8080/ppSetting">발전소설정</a>
-								<a href="http://localhost:8080/userSetting">사용자계정</a>
-								<a href="http://localhost:8080/RTU">RTU</a>
+								<button>발전소설정</button>
+								<button>사용자계정</button>
+								<button>RTU</button>
 							</div>
 							<div class="slide_menu">
 								<span class="menu_icon"><img src="images/menu_icon09.png" alt=""></span>
@@ -214,11 +216,11 @@
 								</p>
 							</div>
 							<div class="treeview-menu">
-								<a href="">공지사항</a>
-								<a href="">문의사항</a>
+								<button>공지사항</button>
+								<button>문의사항</button>
 							</div>
 						</div> <!-- sidebar-menuEnd -->
-						<div>
+						<div id="mini_display">
 							<h4>발전량용량</h4>
 							<p>
 								<span class="num_data">9999.9</span>
@@ -233,6 +235,9 @@
 					</div> <!-- slideEnd -->
 				</div> <!-- containerEnd -->
 			</div><!-- wrapperEnd  -->
+
+
 		</div> <!-- wrapEnd  -->
+
 	</div>
 </html>

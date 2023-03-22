@@ -1,0 +1,169 @@
+<div>
+	<!-- 컨텐츠영역 시작 -->
+	<input type="hidden" id="sessionId" th:value="${session.ID}" readonly>
+	<input type="hidden" id="sessionPhone" th:value="${session.PHONE}" readonly>
+	<div class="mainContainer">
+		<div class="contentContainer contentBox">
+			<div class="margin_b">
+				<span>
+					<input type="text" id="cs2Search"> <input type="button" value="검색" onclick="cs2Search()">					
+				</span>
+				<span>
+					<input type="button" class="saveButton" value="문의작성" onclick="inqSave()">
+				</span>
+			</div>
+			<div id="csCenter2Grid"></div>
+		</div>
+	</div>
+
+	<div class="popupBg" style="display: none;position: absolute;width: 100%;height: 100%;" id="popupBg"></div>
+	<div class="popup_layer" id="popup_layer_inq" style="display: none;z-index:1000;">
+		<div class="pop-container">
+					<div class="layer-head" id="layer-head-inquiry">
+						문의사항 상세정보			
+					</div>
+	<div class="popup_cont">
+		<form method="post" id="inqForm">
+			<input type="hidden" name="INQUIRY_IDX" id="inqId" readonly>
+			<table>
+				<tr>
+					<td>
+						서비스: 
+					</td>
+					<td>
+						<select name="SERVICE_DIVISION" id="inqService" disabled>
+							<option value="Supply">공급기업</option>
+							<option value="Demand">수요기업</option>
+							<option value="xEMS">xEMS</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<div class="raidoName">
+						<input type="radio" name="INQUIRY_DIV" onclick="return false" value="1"> 발전소공사
+						<input type="radio" name="INQUIRY_DIV" onclick="return false" value="2"> 발전량판매
+						<input type="radio" name="INQUIRY_DIV" onclick="return false" value="3"> 발전량구매
+						<input type="radio" name="INQUIRY_DIV" onclick="return false" value="4"> RE100
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						제목: 
+					</td>
+					<td>						
+						<input type="text" name="INQUIRY_SUBJECT" id="inqSubject" placeholder="제목" readonly>						
+					</td>
+				</tr>
+				<tr>
+					<td>
+						내용: 
+					</td>
+					<td>
+						<input type="text" name="INQUIRY_CONTENTS" id="inqContents" placeholder="내용" readonly>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						문의자명: 
+					</td>
+					<td>
+						<input type="text" name="CRT_ID" id="inqCrtId" readonly>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						답변연락처: 
+					</td>
+					<td>
+						<input type="text" name="PHONE" id="inqPhone" readonly>
+					</td>
+				</tr>
+				<tr id="inqT">
+					<td>
+						 등록일시: 
+					</td>
+					<td>
+						<div id="inqDT"></div>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+				<div class="btn_r">
+					<a class="layerBtn" id="ansSb" onClick="ansSave()">답변작성</a>
+					<a class="layerBtn" style="display: none;" id="inqUb" onClick="inqUpdate()">수정</a>
+					<a class="layerBtn" style="display: none;" id="inqSb" onClick="inqSave();">답변작성</a>
+					<a class="layerBtn" style="display: none;" id="inqB" onClick="inqSaveForm();">작성</a>
+					<a href="#" onclick="popCloseInquiry()" class="layerBtn">닫기</a>
+				</div>
+		</div>
+	</div>
+	
+
+	<div class="popup_layer" id="popup_layer_ans" style="display: none;z-index:1000;">
+		<div class="pop-container">
+					<div class="layer-head" id="layer-head-answer">
+						답변 상세정보			
+					</div>
+	<div class="popup_cont">
+		<form method="post" id="ansForm">
+			<input type="hidden" name="ANSWERS_TO_INQUIRIES_IDX" id="ansId" readonly>
+			<input type="hidden" name="INQUIRY_IDX" id="ansInqId" readonly>
+			<table>
+				<tr>
+					<td>제목: </td>
+					<td><div id="ansSubject"></div></td>
+				</tr>
+				<tr>
+					<td>
+						내용: 
+					</td>
+					<td>
+						<input type="text" name="CONTENTS" id="ansContents" placeholder="내용" readonly>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						사업그룹: 
+					</td>
+					<td>
+						<input type="text" name="GROUP" id="ansGroup" placeholder="사업그룹" readonly>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						등록자: 
+					</td>
+					<td>
+						<input type="text" name="CRT_ID" id="ansCrtId" placeholder="등록자" readonly>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						답변연락처: 
+					</td>
+					<td>
+						<input type="text" name="PHONE" id="ansPhone" placeholder="답변연락처" readonly>
+					</td>
+				</tr>
+				<tr id="suvT">
+					<td>
+						등록일시: 
+					</td>
+					<td>
+						<div id="ansDT"></div>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+				<div class="btn_r">
+					<a class="layerBtn" style="display: none;" id="ansUb" onClick="ansUpdate()">수정</a>
+					<a class="layerBtn" style="display: none;" id="ansB" onClick="ansSaveForm();">작성</a>
+					<a href="#" onclick="popCloseAnswer()" class="layerBtn">닫기</a>
+				</div>
+		</div>
+	</div>
+</div>

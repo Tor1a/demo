@@ -1,10 +1,13 @@
 
 $( document ).ready(function() {
+    userDatagrid();
+}); // ready 함수 끝
 
+function userDatagrid(){
     // dxdatagrid 부분----------------------------------------------
     let datagrid = new dxdatagrid();
 
-    let bowl = [['삭제', false, true, true, 'trash', onChoiceDelete], ['신규등록', false, true, true, 'trash', onChoiceUpdate]];
+    let bowl = [['사용안함', false, true, true, 'trash', onChoiceDelete], ['신규등록', false, true, true, 'trash', onChoiceUpdate]];
     let num = bowl.length;
 
     datagrid.setToolbar(
@@ -38,9 +41,7 @@ $( document ).ready(function() {
             }
         });
     }
-
-
-}); // ready 함수 끝
+}
 
 function onChoiceUpdate(dxGrid) {
     document.getElementById("popup_layer").style.display = "block";

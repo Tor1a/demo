@@ -1,0 +1,55 @@
+<div id="contents_wrap">
+	<div class="cont_header">
+		<h1 class="page_title">
+			<img src="../images/menu_icon05.png" alt="">
+			<span>트렌드</span>
+		</h1>
+		<p class="page_navi">
+			<span>태양광 모니터링</span>&gt;<span class="bold_color">트랜드</span>
+		</p>
+	</div> <!-- cont_headerEnd -->
+	<div class="cont_main">
+		<div class="search_wrap">
+			<p>
+				<span class="search_tit">장비종류</span>
+				<select name="type" onchange="selectButtonTrend()" class="common_select">
+					<option value="">전체</option>
+					<option value=""></option>
+				</select>
+			</p>
+			<p>
+				<span class="search_tit">장비구분</span>
+				<select name="div" onchange="selectButtonTrend()" class="common_select">
+					<option value="">전체</option>
+					<option value=""></option>
+				</select>
+			</p>
+			<p>
+				<span class="search_tit">트렌드</span>
+				<select name="daily" onchange="selectButtonTrend()" class="common_select">
+					<option value="">전체</option>
+					<option value=""></option>
+				</select>
+			</p>
+			<p>
+				<span class="search_tit">자료형태</span>
+				<select name="unit" onchange="selectButtonTrend()" class="common_select">
+					<option value="">전체</option>
+					<option value=""></option>
+				</select>
+			</p>
+			<p>
+				<span class="search_tit">기간</span>
+				<input class="common_date" type="date" id="trendStartDay" onblur="selectButtonTrend()">
+				<span>~</span>
+				<input class="common_date" type="date" id="trendEndDay" onblur="selectButtonTrend()">
+			</p>
+		</div> <!-- search_wrapEnd -->
+		<div class="chart_wrap">
+			<p class="chart_tit">발전량 (kWh)</p>
+			<div class="onechart_container">
+				<div id="trendChart"></div>
+			</div>
+		</div> <!-- chart_wrapEnd -->
+	</div> <!-- cont_mainEnd -->
+</div> <!-- contents_wrapEnd -->

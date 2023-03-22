@@ -1,7 +1,14 @@
 
 $( document ).ready(function() {
 
-// // dxdatagrid 부분----------------------------------------------
+    csStatusDxDataGrid();
+    csStatusDxPieChart();
+    csStatusDxChart();
+
+}); // ready 함수 끝
+
+function csStatusDxDataGrid(){
+    // // dxdatagrid 부분----------------------------------------------
     let datagrid = new dxdatagrid();
 
 
@@ -18,33 +25,55 @@ $( document ).ready(function() {
     datagrid.setDataSource(dataSource_grid);
     datagrid.setKeyExpr('a');
 
-    const dxGrid = $('#gridContainer').dxDataGrid(datagrid).dxDataGrid('instance');
+    const dxGrid = $('#girdCsStatus').dxDataGrid(datagrid).dxDataGrid('instance');
+}
 
+function csStatusDxPieChart(){
+    // dxpiechart 도넛차트----------------------------------------------
+    let piechart = new dxPieChart();
 
-//dxchart 부분----------------------------------------------
+    piechart.setDataSource(dataSource);
+    piechart.setType('doughnut');
+    piechart.setLegend('top', 'right', 0);
+    piechart.setSeries('region', 'val', 'fixedPoint', 1, true);
+    piechart.setOnPointClick(onEvt);
+
+    $('#csPie18').dxPieChart(piechart);
+}
+
+function onEvt() {
+    let piechart = new dxPieChart();
+
+    piechart.setDataSource(dataSource3);
+    piechart.setType('doughnut');
+    piechart.setLegend('bottom', 'right', 162);
+    piechart.setSeries('region2', 'val', 'fixedPoint', 1, true);
+
+    $('#csPie1').dxPieChart(piechart);
+}
+
+function csStatusDxChart(){
     let chart19 = new dxchart();
-
-    //dxchart PPT 19 PAGE ----------------------------------------------
 
     const dataSource_sample19 = [
         {
-            date: 'CH1',
+            date: 'RPS계약',
             data: 4800,
         },
         {
-            date: 'CH2',
+            date: 'REC거래',
             data: 4300,
         },
         {
-            date: 'CH3',
+            date: 'PPA계약',
             data: 4000,
         },
         {
-            date: 'CH4',
+            date: '렌탈사업',
             data: 3800,
         },
         {
-            date: 'CH5',
+            date: '탄소배출권',
             data: 300,
         }];
 
@@ -52,41 +81,12 @@ $( document ).ready(function() {
 
     chart19.setCommonSeriesSettings(0.7, 'date', 'bar');
     chart19.setSeries(['data'], ['발전량1'], ['#A9F5E1']);
-    chart19.setTitle('채널별 암페어');
+    chart19.setTitle('판매 사업별 분석결과');
     chart19.setLegend('bottom', 'center', 0, false);
     chart19.setTooltip('true');
 
     $('#chart19').dxChart(chart19);
-
-//ppt-18 dxpiechart 도넛차트----------------------------------------------
-    let piechart = new dxPieChart();
-
-    piechart.setDataSource(dataSource);
-    piechart.setTitle('지출분석도 (n년차 기준)');
-    piechart.setType('doughnut');
-    piechart.setLegend('top', 'right', 162);
-    piechart.setSeries('region', 'val', 'fixedPoint', 1, true);
-    piechart.setOnPointClick(onEvt);
-
-    $('#pie18').dxPieChart(piechart);
-
-}); // ready 함수 끝
-
-function onEvt() {
-    let piechart = new dxPieChart();
-
-    piechart.setDataSource(dataSource3);
-    piechart.setTitle('지출분석도 (n년차 기준)');
-    piechart.setType('doughnut');
-    piechart.setLegend('bottom', 'right', 162);
-    piechart.setSeries('region2', 'val', 'fixedPoint', 1, true);
-
-    $('#pie1').dxPieChart(piechart);
 }
-
-
-
-
 
 const dataSource = [{
     region: 'INV#1',
