@@ -40,7 +40,7 @@ $( document ).ready(function() {
 		var trendChartResize = document.getElementById("trendChart");
 		if(trendChartResize){
 			var height_size = window.outerHeight;
-			trendChartResize.style.height = height_size - 300 + "px";
+			trendChartResize.style.height = height_size - 350 + "px";
 		}
 	});
 	
@@ -63,7 +63,7 @@ $( document ).ready(function() {
 
 
 			var height_size = window.outerHeight;
-			trendChartResize.style.height = height_size - 300 + "px";
+			trendChartResize.style.height = height_size - 350 + "px";
 
 			$('#trendChart').dxChart(chartTrend);
 		}

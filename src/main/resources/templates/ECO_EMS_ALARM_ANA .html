@@ -12,22 +12,27 @@
 		<div class="search_wrap">
 			<p>
 				<span class="search_tit">장비종류</span>
-				<select name="type" onchange="alarm2Serch()" class="common_select">
+				<select name="type" id="TypeANA" onchange="alarm2TypeChange()" class="common_select">
 					<option value="">전체</option>
-					<option value=""></option>
+					<option value="1">접속함</option>
+					<option value="2">ACB</option>
+					<option value="3">VCB</option>
+					<option value="4">인버터</option>
+					<option value="5">사이트이상</option>
 				</select>
 			</p>
 			<p>
 				<span class="search_tit">알람종류</span>
-				<select id="chStatusAType" name="aType" onchange="alarm2Serch()" class="common_select">
+				<select id="equipType" name="equipType" onchange="alarm2Serch()" class="common_select">
 					<option value="">전체</option>
 					<option value=""></option>
 				</select>
 			</p>
 			<p>
-				<select id="vcbAType" name="aType" onchange="alarm2Serch()" class="common_select">
-					<option value="">사용여부:전체</option>
-					<option value=""></option>
+				<select name="aUse" onchange="alarm2Serch()" class="common_select">
+					<option value="">사용여부 : 전체</option>
+					<option value="Y">사용여부 : Y</option>
+					<option value="N">사용여부 : N</option>
 				</select>
 			</p>
 			<p>

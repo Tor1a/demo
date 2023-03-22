@@ -9,8 +9,12 @@
 	<body class="landing area">
 	<header th:replace="fragments/header :: headerFragment"></header>
 	<div layout:fragment="content" id="contents">
-
+			
 	</div>
+	<input type="button" onclick="showTrend()" value="트랜드">
+	<input type="button" onclick="showEmsCustomer()"  value="문의">
+	<div id="TrendPage"></div>
+	<div id="EmsCustomerPage"></div>
 	<footer th:replace="fragments/footer :: footerFragment" id="wrap_footer"></footer>
 	</body>
 </html>

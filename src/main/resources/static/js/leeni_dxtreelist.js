@@ -17,6 +17,7 @@ function dxtreelist() {
 	this.paging = {
 		enabled: false,
 	};
+	this.toolbar = {};
 	this.option = {};
 	this.editing = {};
 	this.onRowClick = {};

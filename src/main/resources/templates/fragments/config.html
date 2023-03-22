@@ -30,7 +30,7 @@
     <script type="text/javascript" th:src="@{/js/csStatus.js}"></script>
 <!--    <script type="text/javascript" th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js}"></script>-->
     <script type="text/javascript" th:src="@{js/forcasting.js}"></script>
-    <script type="text/javascript" th:src="@{/js/trend.js}"></script>
+    
     <script type="text/javascript" th:src="@{/js/data.js}"></script>
     <script type="text/javascript" th:src="@{/js/report.js}"></script>
     <script type="text/javascript" th:src="@{/js/alarm1.js}"></script>
@@ -217,6 +217,39 @@
                     break;
             }
         }
+        
+        function showTrend(){
+			$('#TrendPage').show();
+			$('#EmsCustomerPage').hide();
+			if(!$('#trendChart')[0]){
+				$.ajax({
+					type:'GET',
+					url: 'trend',
+				success: function (data){
+					var script = document.createElement('script');
+    				script.src = '/js/trend.js';
+    				document.head.appendChild(script);
+
+					document.getElementById('TrendPage').innerHTML = data;
+			
+					}
+				});
+			}
+		}
+		function showEmsCustomer(){
+			$('#EmsCustomerPage').show();
+			$('#TrendPage').hide();
+			if(!$('#csCenter2Grid')[0]){
+				$.ajax({
+					type:'GET',
+					url: 'csCenter2',
+					success: function (data){
+						document.getElementById('EmsCustomerPage').innerHTML = data;
+						csCenter2Start();
+					}
+				});
+			}
+		}
     </script>
 </th:block>
 

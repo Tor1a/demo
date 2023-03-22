@@ -415,6 +415,19 @@ dxdatagrid.prototype.setOnCellPrepared = function(onEvt) {
 };
 
 
+// type = boolaen
+dxdatagrid.prototype.setShowRowLines = function(rowLines){
+	this.showRowLines = rowLines;
+}
+
+// type = boolaen
+dxdatagrid.prototype.setShowColumnHeader = function(showHeader){
+	this.showColumnHeaders = showHeader;
+}
+
+dxdatagrid.prototype.setShowBorders = function(border){
+	this.showBorders = border;
+}
 
 /**
  * 

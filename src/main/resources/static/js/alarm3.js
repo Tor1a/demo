@@ -1,4 +1,5 @@
 
+
 $( document ).ready(function() {
 	alarm3Start();
 }); // ready 함수 끝

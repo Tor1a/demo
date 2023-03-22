@@ -79,7 +79,7 @@ function alarmCheckOnClick(id){
 	});
 
 function alarm1Start(){
-	if($('alarm1Grid')){
+	if($('#alarm1Grid')[0]){
 		
 	let alarm1Grid = new dxdatagrid();
 	alarm1Grid.setDataSource(alarm);

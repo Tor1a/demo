@@ -1076,3 +1076,51 @@ const center2list = [{
   CRT_ID: "admin",
   CRT_DT: "2023-05-21 15:00"
 }];
+
+const equipType = [
+	{
+		XID: "101",
+		TYPE: "001",
+		NAME: "통신이상"
+	},{
+		XID: "102",
+		TYPE: "001",
+		NAME: "다이오드과온"
+	},{
+		XID: "103",
+		TYPE: "001",
+		NAME: "내부과온"
+	},{
+		XID: "104",
+		TYPE: "001",
+		NAME: "과전류"
+	},{
+		XID: "105",
+		TYPE: "001",
+		NAME: "저전류"
+	},{
+		XID: "106",
+		TYPE: "001",
+		NAME: "화재센서동작"
+	},{
+		XID: "107",
+		TYPE: "001",
+		NAME: "차단기 Trip 감지"
+	},{
+		XID: "301",
+		TYPE: "003",
+		NAME: "통신이상"
+	},{
+		XID: "302",
+		TYPE: "003",
+		NAME: "Remote CB OFF"
+	},{
+		XID: "401",
+		TYPE: "004",
+		NAME: "Remote CB OFF"
+	},{
+		XID: "401",
+		TYPE: "004",
+		NAME: "Communicate fault"
+	}
+]

@@ -1,28 +1,45 @@
-
 $( document ).ready(function() {
 	alarm2Start();
 }); // ready 함수 끝
+function alarm2TypeChange(){
+	const type = $('select[name="type"]').val();
+	let equipID = "";
+	let equipHtmlAlarmAna = '<select id="equipType" name="equipType" onchange="alarm2Serch()" class="common_select">';
+	equipHtmlAlarmAna += '<option value="">전체</option>';
+	if(type == "1"){
+		equipID = "001";
+	}else if(type == "2"){
+		equipID = "002";
+	}else if(type == "3"){
+		equipID = "003";
+	}else if(type == "4"){
+		equipID = "004";
+	}else if(type == "5"){
+		equipID = "005";
+	}
+	if(equipID != ""){
+		for(let i = 0;i < equipType.length; i++){
+			if(equipType[i].TYPE == equipID){
+				equipHtmlAlarmAna += '<option value="' + equipType[i].XID + '">' + equipType[i].NAME + '</option>';
+			}
+		}
+	}
+	equipHtmlAlarmAna += '</select>';
+	$('#equipType')[0].innerHTML = equipHtmlAlarmAna;
+	alarm2Serch();
+}
 function alarm2Serch(){
 	const type = $('select[name="type"]').val();
-	let aType;
-	const typeLength = $('select[name="aType"]').length;
-	for(i = 0; i < typeLength; i++){
-		$('select[name="aType"]')[i].style.display = "none";
-	}
-	if(type == "" || type == "acb" || type == "site"){
-		$('#AType')[0].style.display = "inline";
-		aType = $('#AType').val();
-	}else{
-		$('#' + type + "AType")[0].style.display = "inline";
-		aType = $('#' + type + "AType").val();	
-	}
+	let equip = $('select[name="equipType"]').val();
 	const aUse = $('select[name="aUse"]').val();
-	const startDay = new Date($('#startDay').val());
+	let startDay = new Date($('#startDay').val());
 	const endDay =  new Date($("#endDay").val());
 	endDay.setHours(23);
 	endDay.setMinutes(59);
 	endDay.setSeconds(59);
-	
+	if(startDay == "Invalid Date"){
+		startDay = new Date(1500,1,1);
+	}
 
 	if(new Date(startDay) > new Date(endDay)){
 		$('#startDay')[0].value = endDay;
@@ -30,7 +47,7 @@ function alarm2Serch(){
 		return null;
 	}
 	
-	console.log("장비종류: " + type + ", 알람종류: " + aType + ", 사용여부: " + aUse + ", 시작기간: " + startDay + ", 끝 기간: " + endDay);
+	console.log("장비종류: " + type + ", 알람종류: " + equip + ", 사용여부: " + aUse + ", 시작기간: " + startDay + ", 끝 기간: " + endDay);
 	
 /*	
 	$.ajax({
@@ -39,7 +56,7 @@ function alarm2Serch(){
 		dataType: "json",
 		data: {
 			type: type,
-			aType: aType,
+			equip: equip,
 			aUse: aUse,
 			startDay: startDay,
 			endDay: endDay,
