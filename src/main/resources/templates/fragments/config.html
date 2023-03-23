@@ -38,7 +38,6 @@
     <script type="text/javascript" th:src="@{/js/alarm3.js}"></script>
     <script type="text/javascript" th:src="@{/js/csCenter2.js}"></script>
 
-
     <th:block layout:fragment="script"></th:block>
     <th:block layout:fragment="css"></th:block>
     <script>
@@ -56,7 +55,14 @@
             document.addEventListener("weather", function(e) {
                 //날씨와 하늘정보에 대한 이미지를 표시
                 console.log('하늘상태:' + e.sky + ' 기온:' + e.temperature);
-                document.getElementById("result").innerHTML = '하늘상태 [맑음(1), 구름많음(3), 흐림(4)] :' + e.sky + ' 기온:' + e.temperature;
+                if(e.sky == 1){
+                    document.getElementById("result").innerHTML = '<img src="images/weather_icon01.png" alt="">' + e.temperature + '°C';
+                }else if(e.sky == 3){
+                    document.getElementById("result").innerHTML = '<img src="images/weather_icon03.png" alt="">'+  e.temperature + '°C';
+
+                }else{
+                    document.getElementById("result").innerHTML = '<img src="images/weather_icon04.png" alt="">'+  e.temperature + '°C';
+                }
             });
             //////////////////////////////////////////////////////////
         }
@@ -215,6 +221,9 @@
                         }
                     });
                     break;
+                case 15:
+                    alert("test");
+
             }
         }
         
