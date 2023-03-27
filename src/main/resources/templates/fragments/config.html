@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+<html lagn="ko" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"l>
 
 <th:block th:fragment="configFragment">
@@ -11,6 +11,7 @@
     <link th:href="@{/css/layer_popup.css}" rel="stylesheet" >
     <link th:href="@{/css/dx.light.css}" rel="stylesheet" >
     <link th:href="@{/css/home.css}" rel="stylesheet">
+    <link th:href="@{/css/daterangepicker.css}" rel="stylesheet">
 
     <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/dx.all.js}"></script>
@@ -23,20 +24,16 @@
 <!--    <script type="text/javascript" th:src="@{/js/jquery-1.12.0.min.js}"></script>-->
     <script type="text/javascript" th:src="@{/js/main_menu.js}"></script>
     <script type="text/javascript" th:src="@{/js/mo_main_menu.js}"></script>
-    <script type="text/javascript" th:src="@{/js/home.js}"></script>
-    <script type="text/javascript" th:src="@{/js/powerPlantsStting.js}"></script>
-    <script type="text/javascript" th:src="@{/js/userSetting.js}"></script>
-    <script type="text/javascript" th:src="@{/js/RTU.js}"></script>
-    <script type="text/javascript" th:src="@{/js/csStatus.js}"></script>
+	<script type="text/javascript" th:src="@{/js/moment.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/daterangepicker.js}"></script>
+    
+
 <!--    <script type="text/javascript" th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js}"></script>-->
     <script type="text/javascript" th:src="@{js/forcasting.js}"></script>
     
     <script type="text/javascript" th:src="@{/js/data.js}"></script>
-    <script type="text/javascript" th:src="@{/js/report.js}"></script>
-    <script type="text/javascript" th:src="@{/js/alarm1.js}"></script>
-    <script type="text/javascript" th:src="@{/js/alarm2.js}"></script>
-    <script type="text/javascript" th:src="@{/js/alarm3.js}"></script>
-    <script type="text/javascript" th:src="@{/js/csCenter2.js}"></script>
+
+
 
     <script type="text/javascript" th:src="@{/js/inverter.js}"></script>
     <script type="text/javascript" th:src="@{/js/csCenter.js}"></script>
@@ -76,201 +73,247 @@
             let latitude = 37.5232920131718;	//y
 
             weatherRun(longitude, latitude);
-        });
+            
+            
+            
+			$('#DashBoardPage').show();
+			if($('#DashBoardPage')[0].innerHTML == ""){
+				$.ajax({
+					type:'GET',
+					url: '/dashBoard',
+				success: function (data){
+					var script = document.createElement('script');
+    				script.src = '/js/home.js';
+    				document.head.appendChild(script);
+					document.getElementById('DashBoardPage').innerHTML = data;
+					}
+				});
+			}
+		});
+
+
 
         function pg(num){
+			$.each($('.PageWindow'),function(i){
+					$('.PageWindow').hide();
+			});
+			
             switch (num){
                 case 1:
-                $.ajax({
-                   type:'GET',
-                   url: '/dashBoard',
-                    success: function (data){
-                        document.getElementById('contents').innerHTML = data;
-                        dataGrid();
-                    }
-                });
+                $('#DashBoardPage').show();
+				if($('#DashBoardPage')[0].innerHTML == ""){
+					$.ajax({
+						type:'GET',
+						url: '/dashBoard',
+                    	success: function (data){
+							var script = document.createElement('script');
+    						script.src = '/js/home.js';
+    						document.head.appendChild(script);
+                        	document.getElementById('DashBoardPage').innerHTML = data;
+                    	}
+                	});
+                }
                 break;
                 case 2:
+                $('#DiagramPage').show();
+				if($('#DiagramPage')[0].innerHTML == ""){
                     $.ajax({
                         type:'GET',
                         url: 'ppSetting',
                         success: function (data){
-                            document.getElementById('contents').innerHTML = data;
+                            document.getElementById('DiagramPage').innerHTML = data;
 
                         }
                     });
+				}
                 break;
                 case 3:
+                $('#InvertPage').show();
+				if($('#InvertPage')[0].innerHTML == ""){
                     $.ajax({
                         type:'GET',
                         url: 'inverter',
                         success: function (data){
-                            document.getElementById('contents').innerHTML = data;
+                            document.getElementById('InvertPage').innerHTML = data;
                             openBtn();
                             chart2Draw();
                             chart21Draw();
                             eachInverterDraw();
                         }
                     });
+				}
                 break;
                 case 4:
+                $('#ConboxPage').show();
+				if($('#ConboxPage')[0].innerHTML == ""){
                     $.ajax({
                         type:'GET',
                         url: 'chStatus',
                         success: function (data){
-                            document.getElementById('contents').innerHTML = data;
-                            csStatusDxDataGrid();
-                            csStatusDxPieChart();
-                            csStatusDxChart();
+							var script = document.createElement('script');
+    						script.src = '/js/csStatus.js';
+    						document.head.appendChild(script);
+                            document.getElementById('ConboxPage').innerHTML = data;
                         }
                     });
-                    break;
+				}
+                break;
                 case 5:
-                    $.ajax({
-                        type:'GET',
-                        url: 'trend',
-                        success: function (data){
-                            document.getElementById('contents').innerHTML = data;
-                            trendChart();
-                        }
-                    });
-                    break;
+				$('#TrendPage').show();
+				if($('#TrendPage')[0].innerHTML == ""){
+					$.ajax({
+						type:'GET',
+						url: 'trend',
+					success: function (data){
+						var script = document.createElement('script');
+    					script.src = '/js/trend.js';
+    					document.head.appendChild(script);
+						document.getElementById('TrendPage').innerHTML = data;
+			
+					}
+				});
+				}
+				break;
                 case 6:
+				$('#ReportPage').show();
+				if($('#ReportPage')[0].innerHTML == ""){
                     $.ajax({
                         type:'GET',
                         url: 'report',
                         success: function (data){
-                            document.getElementById('contents').innerHTML = data;
-                            reportStart();
+							var script = document.createElement('script');
+    						script.src = '/js/report.js';
+    						document.head.appendChild(script);
+                            document.getElementById('ReportPage').innerHTML = data;
                         }
                     });
-                    break;
+				}
+				break;
                 case 7:
+				$('#AlarmPage').show();
+				if($('#AlarmPage')[0].innerHTML == ""){
                     $.ajax({
                         type:'GET',
                         url: 'alarm',
                         success: function (data){
-                            document.getElementById('contents').innerHTML = data;
-                            alarm1Start();
+							var script = document.createElement('script');
+    						script.src = '/js/alarm1.js';
+    						document.head.appendChild(script);
+                            document.getElementById('AlarmPage').innerHTML = data;
                         }
                     });
+                    }
                     break;
                 case 8:
+				$('#AlarmAnaPage').show();
+				if($('#AlarmAnaPage')[0].innerHTML == ""){
                     $.ajax({
                         type:'GET',
                         url: 'alarm2',
                         success: function (data){
-                            document.getElementById('contents').innerHTML = data;
-                            alarm2Start();
+							var script = document.createElement('script');
+    						script.src = '/js/alarm2.js';
+    						document.head.appendChild(script);
+                            document.getElementById('AlarmAnaPage').innerHTML = data;
                         }
                     });
+                    }
                     break;
                 case 9:
+				$('#AlarmStaPage').show();
+				if($('#AlarmStaPage')[0].innerHTML == ""){
                     $.ajax({
                         type:'GET',
                         url: 'alarm3',
                         success: function (data){
-                            document.getElementById('contents').innerHTML = data;
-                            alarm3Start();
+							var script = document.createElement('script');
+    						script.src = '/js/alarm3.js';
+    						document.head.appendChild(script);
+                            document.getElementById('AlarmStaPage').innerHTML = data;
+
                         }
                     });
+                    }
                     break;
                 case 10:
+				$('#SettingPpPage').show();
+				if($('#SettingPpPage')[0].innerHTML == ""){
                     $.ajax({
                         type:'GET',
                         url: 'ppSetting',
                         success: function (data){
-                            document.getElementById('contents').innerHTML = data;
-                            ppDataGrid();
+							var script = document.createElement('script');
+    						script.src = '/js/powerPlantsStting.js';
+    						document.head.appendChild(script);
+                            document.getElementById('SettingPpPage').innerHTML = data;
                         }
                     });
+                    }
                     break;
                 case 11:
+				$('#SettingUsePage').show();
+				if($('#SettingUsePage')[0].innerHTML == ""){
                     $.ajax({
                         type:'GET',
                         url: 'userSetting',
                         success: function (data){
-							console.log("");
-                            document.getElementById('contents').innerHTML = data;
-                            userDatagrid();
+							var script = document.createElement('script');
+    						script.src = '/js/userSetting.js';
+    						document.head.appendChild(script);
+                            document.getElementById('SettingUsePage').innerHTML = data;
                         }
                     });
+                    }
                     break;
                 case 12:
+				$('#SettingRtuPage').show();
+				if($('#SettingRtuPage')[0].innerHTML == ""){
                     $.ajax({
                         type:'GET',
                         url: 'RTU',
                         success: function (data){
-                            document.getElementById('contents').innerHTML = data;
-                            RTUdatagrid();
+							var script = document.createElement('script');
+    						script.src = '/js/RTU.js';
+    						document.head.appendChild(script);
+                            document.getElementById('SettingRtuPage').innerHTML = data;
                         }
                     });
+                    }
                     break;
                 case 13:
+                $('#NoticePage').show();
+				if($('#NoticePage')[0].innerHTML == ""){
                     $.ajax({
                         type:'GET',
                         url: 'csCenter',
                         success: function (data){
-                            document.getElementById('contents').innerHTML = data;
+                            document.getElementById('NoticePage').innerHTML = data;
                             csCenter1Start();
                         }
                     });
+                    }
                     break;
                 case 14:
+                $('#EmsCustomerPage').show();
+				if($('#EmsCustomerPage')[0].innerHTML == ""){
                     $.ajax({
                         type:'GET',
                         url: 'csCenter2',
                         success: function (data){
-                            document.getElementById('contents').innerHTML = data;
-                            csCenter2Start();
+							var script = document.createElement('script');
+    						script.src = '/js/csCenter2.js';
+    						document.head.appendChild(script);
+                            document.getElementById('EmsCustomerPage').innerHTML = data;
                         }
                     });
+                    }
                     break;
                 case 15:
                     alert("test");
 
             }
         }
-        
-        function showTrend(){
-			$('#TrendPage').show();
-			$('#EmsCustomerPage').hide();
-			if(!$('#trendChart')[0]){
-				$.ajax({
-					type:'GET',
-					url: 'trend',
-				success: function (data){
-					var script = document.createElement('script');
-    				script.src = '/js/trend.js';
-    				document.head.appendChild(script);
-
-					document.getElementById('TrendPage').innerHTML = data;
-			
-					}
-				});
-			}
-		}
-		function showEmsCustomer(){
-			$('#EmsCustomerPage').show();
-			$('#TrendPage').hide();
-			if(!$('#csCenter2Grid')[0]){
-				$.ajax({
-					type:'GET',
-					url: 'csCenter2',
-					success: function (data){
-						document.getElementById('EmsCustomerPage').innerHTML = data;
-						csCenter2Start();
-					}
-				});
-			}
-		}
     </script>
 </th:block>
 
 </html>
-
-<!--아무내용이나 쓰겠습니다!!!!-->
-
-<!--충돌테스트중입니다...모두 조심하세요-->
-
-<!--테스트중-->
