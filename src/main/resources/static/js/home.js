@@ -103,122 +103,122 @@ $( document ).ready(function() {
 
 //dxchart 부분----------------------------------------------
 
-    let chart21 = new dxchart();
-    let chart2 = new dxchart();
+    // let chart21 = new dxchart();
+    // let chart2 = new dxchart();
     let chart3 = new dxchart();
     let chart18 = new dxchart();
     let chart19 = new dxchart();
 
 
     //dxchart PPT 21 PAGE ----------------------------------------------
-    const dataSource_sample21 = [
-{
-    date: '1',
-    data: 60,
-},
-{
-    date: '2',
-    data: 40,
-},
-{
-    date: '3',
-    data: 80,
-},
-{
-    date: '4',
-    data: 25,
-},
-{
-    date: '5',
-    data: 25,
-},
-{
-    date: '6',
-    data: 20,
-},
-{
-    date: '7',
-    data: 25,
-},
-{
-    date: '8',
-    data: 30,
-},
-{
-    date: '9',
-    data: 35,
-},
-{
-    date: '10',
-    data: 40,
-},
-{
-    date: '11',
-    data: 45,
-},
-{
-    date: '12',
-    data: 50,
-},
-{
-    date: '13',
-    data: 55,
-},
-{
-    date: '14',
-    data: 60,
-},
-{
-    date: '15',
-    data: 65,
-},
-{
-    date: '16',
-    data: 75,
-},
-{
-    date: '17',
-    data: 65,
-},
-{
-    date: '18',
-    data: 70,
-},
-{
-    date: '19',
-    data: 80,
-},
-{
-    date: '20',
-    data: 80,
-},
-{
-    date: '21',
-    data: 80,
-},
-{
-    date: '22',
-    data: 80,
-},
-{
-    date: '23',
-    data: 90,
-},
-{
-    date: '24',
-    data: 100,
-}];
-
-    chart21.setDataSource(dataSource_sample21);
-
-    chart21.setCommonSeriesSettings(0.7, 'date', 'bar');
-    chart21.setSeries(['data'], ['발전량1'], ['#E6E6E6']);
-    chart21.setTitle('발전량');
-    chart21.setLegend('bottom', 'center', 0, false);
-    chart21.setTooltip('true');
-
-    $('#chart21').dxChart(chart21);
-
+//     const dataSource_sample21 = [
+// {
+//     date: '1',
+//     data: 60,
+// },
+// {
+//     date: '2',
+//     data: 40,
+// },
+// {
+//     date: '3',
+//     data: 80,
+// },
+// {
+//     date: '4',
+//     data: 25,
+// },
+// {
+//     date: '5',
+//     data: 25,
+// },
+// {
+//     date: '6',
+//     data: 20,
+// },
+// {
+//     date: '7',
+//     data: 25,
+// },
+// {
+//     date: '8',
+//     data: 30,
+// },
+// {
+//     date: '9',
+//     data: 35,
+// },
+// {
+//     date: '10',
+//     data: 40,
+// },
+// {
+//     date: '11',
+//     data: 45,
+// },
+// {
+//     date: '12',
+//     data: 50,
+// },
+// {
+//     date: '13',
+//     data: 55,
+// },
+// {
+//     date: '14',
+//     data: 60,
+// },
+// {
+//     date: '15',
+//     data: 65,
+// },
+// {
+//     date: '16',
+//     data: 75,
+// },
+// {
+//     date: '17',
+//     data: 65,
+// },
+// {
+//     date: '18',
+//     data: 70,
+// },
+// {
+//     date: '19',
+//     data: 80,
+// },
+// {
+//     date: '20',
+//     data: 80,
+// },
+// {
+//     date: '21',
+//     data: 80,
+// },
+// {
+//     date: '22',
+//     data: 80,
+// },
+// {
+//     date: '23',
+//     data: 90,
+// },
+// {
+//     date: '24',
+//     data: 100,
+// }];
+//
+//     chart21.setDataSource(dataSource_sample21);
+//
+//     chart21.setCommonSeriesSettings(0.7, 'date', 'bar');
+//     chart21.setSeries(['data'], ['발전량1'], ['#E6E6E6']);
+//     chart21.setTitle('발전량');
+//     chart21.setLegend('bottom', 'center', 0, false);
+//     chart21.setTooltip('true');
+//
+//     $('#chart21').dxChart(chart21);
+//
 
 
     //dxchart PPT 19 PAGE ----------------------------------------------
@@ -263,69 +263,69 @@ $( document ).ready(function() {
 
 
 // 	let chart2 = new dxchart();
-
-    const dataSource_sample2 = [
-{
-    date: '1월',
-    value: 45,
-},
-{
-    date: '2월',
-    value: 70,
-},
-{
-    date: '3월',
-    value: 55,
-},
-{
-    date: '4월',
-    value: 60,
-},
-{
-    date: '5월',
-    value: 70,
-},
-{
-    date: '6월',
-    value: 40,
-},
-{
-    date: '7월',
-    value: 50,
-},
-{
-    date: '8월',
-    value: 65,
-},
-{
-    date: '9월',
-    value: 70,
-},
-{
-    date: '10월',
-    value: 90,
-},
-{
-    date: '11월',
-    value: 90,
-},
-{
-    date: '12월',
-    value: 105,
-}];
-
-    chart2.setDataSource(dataSource_sample2);
-
-    chart2.setCommonSeriesSettings(0.5, 'date', 'area');
-    chart2.setSeries(['value'], ['발전량2'], ['#F6CEF5']);
-    chart2.setTitle('KAU22');
-    chart2.setLegend('bottom', 'center', 0, false);
-    chart2.setArgumentAxis(false);
-
-    $('#chart2').dxChart(chart2);
-
-
-
+//
+//     const dataSource_sample2 = [
+// {
+//     date: '1월',
+//     value: 45,
+// },
+// {
+//     date: '2월',
+//     value: 70,
+// },
+// {
+//     date: '3월',
+//     value: 55,
+// },
+// {
+//     date: '4월',
+//     value: 60,
+// },
+// {
+//     date: '5월',
+//     value: 70,
+// },
+// {
+//     date: '6월',
+//     value: 40,
+// },
+// {
+//     date: '7월',
+//     value: 50,
+// },
+// {
+//     date: '8월',
+//     value: 65,
+// },
+// {
+//     date: '9월',
+//     value: 70,
+// },
+// {
+//     date: '10월',
+//     value: 90,
+// },
+// {
+//     date: '11월',
+//     value: 90,
+// },
+// {
+//     date: '12월',
+//     value: 105,
+// }];
+//
+//     chart2.setDataSource(dataSource_sample2);
+//
+//     chart2.setCommonSeriesSettings(0.5, 'date', 'area');
+//     chart2.setSeries(['value'], ['발전량2'], ['#F6CEF5']);
+//     chart2.setTitle('KAU22');
+//     chart2.setLegend('bottom', 'center', 0, false);
+//     chart2.setArgumentAxis(false);
+//
+//     $('#chart2').dxChart(chart2);
+//
+//
+//
 
 
 //dxchart 부분 차트샘플3----------------------------------------------

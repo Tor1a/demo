@@ -22,9 +22,10 @@ public class homeController {
     public String familyTree(){
         return "familyTree";
     }
-    @GetMapping("/invert")
-    public ModelAndView invert(){
-        ModelAndView mav = new ModelAndView("invert");
+    @GetMapping("/inverter")
+    public ModelAndView inverter(){
+        ModelAndView mav = new ModelAndView("inverter");
+
         return mav;
     }
     @GetMapping("/chStatus")
@@ -72,8 +73,13 @@ public class homeController {
         return mav;
     }
 
-    @GetMapping("/csCenter2")
+    @GetMapping("/csCenter")
     public String csCenter(){
+        return "ECO_EMS_CUSTOMER1 ";
+    }
+
+    @GetMapping("/csCenter2")
+    public String csCenter2(){
         return "ECO_EMS_CUSTOMER ";
     }
 

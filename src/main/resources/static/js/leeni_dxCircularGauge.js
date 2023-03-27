@@ -14,7 +14,7 @@ function dxCircularGauge() {
 }
 
 /**
- * circularGauge의 계열 및 해당 요소를 색칠하는 데 사용할 팔레트를 설정합니다.
+ * 게이지의 기본 값을 지정합니다.
  * data type은 int이다. server에서 받아온 data를 넣어준다. ex) value = 80;
  * https://js.devexpress.com/Documentation/ApiReference/UI_Components/dxCircularGauge/Configuration/#value
  */
@@ -68,7 +68,9 @@ function options() {
 	this.scale = {};
 	this.tick = {};
 	this.valueIndicator = {};
+	this.size = {};
 };
+
 
 /**
  * UI 구성 요소의 기하 도형을 설정하는 데 필요한 속성을 지정합니다.
@@ -129,17 +131,32 @@ options.prototype.setTick = function(color, length, opacity, visible, width) {
  * data type은 String, int, int이다. ex) color = "black"; type = "triangleNeedle"; width = 20;
  * https://js.devexpress.com/Documentation/ApiReference/UI_Components/dxCircularGauge/Configuration/valueIndicator/
  */
-options.prototype.setValueIndicator = function(color, type, width) {
+options.prototype.setValueIndicator = function(color, type, width, offset, size) {
 	//https://js.devexpress.com/Documentation/ApiReference/UI_Components/dxCircularGauge/Configuration/valueIndicator/#type
 		//Accepted Values: 'rectangleNeedle' | 'triangleNeedle' | 'twoColorNeedle' | 'rangeBar' | 'triangleMarker' | 'textCloud'
 
 	this.valueIndicator.color = color;
 	this.valueIndicator.type = type;
 	this.valueIndicator.width = width;
-	
+	this.valueIndicator.offset = offset;	//표시기와 보이지 않는 눈금선 사이의 거리 sjk추가
+	this.valueIndicator.size = size;	//rangeBar 유형 의 지표에 대한 범위 표시줄 굵기 sjk추가
+
 //	this.valueIndicator = {
 //		color: "black",
 //	    type: "triangleNeedle",
 //	    width:20
+// 		offset:0
+// 		size:10
 //	}
+
+	/** sjk 추가
+	 * UI 구성 요소의 크기를 픽셀 단위로 지정합니다.
+	 * data type은 int, int이다. Default Value) height = 300; width = 300;
+	 * https://js.devexpress.com/Documentation/ApiReference/UI_Components/dxCircularGauge/Configuration/size/
+	 */
+
+	options.prototype.setSize = function (height, width){
+		this.size.height = height;
+		this.size.width = width;
+	}
 }

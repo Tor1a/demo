@@ -148,7 +148,7 @@
 	}
 
 
-	.andTtable_wrap {
+	.andTable_wrap {
 		width: 98%;
 		height: 362px;
 		margin: 0 auto;
@@ -200,14 +200,37 @@
 		font-family: 'NotoSansKR';
 		font-weight: 600;
 		text-align: center;
-		line-height: 40px;
+		line-height: 22px;
 	}
 
 	.small_chart {
-		width: 90%;
+		width: 100%;
 		height: 120px;
 		margin: 0 auto;
 		border: 1px solid #EEE;
+		text-align: center;
+		position: relative;
+	}
+
+	.center_section{
+		display: inline-block;
+		position: absolute;
+		left:-2%;
+		top:-30%;
+	}
+
+
+	.text_value{
+		position: absolute;
+		top:35%;
+		right:32%;
+		line-height: 30px;
+		color: #c5fd38;
+		font-size: 30px;
+	}
+
+	.now_value{
+		font-weight:bold;
 	}
 
 	.inverter .multipleChart_wrap .chart_wrap {
@@ -218,7 +241,7 @@
 		height: 250px !important;
 	}
 
-	.inverter .andTtable_wrap {
+	.inverter .andTable_wrap {
 		height: 214px;
 	}
 

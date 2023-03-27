@@ -38,6 +38,9 @@
     <script type="text/javascript" th:src="@{/js/alarm3.js}"></script>
     <script type="text/javascript" th:src="@{/js/csCenter2.js}"></script>
 
+    <script type="text/javascript" th:src="@{/js/inverter.js}"></script>
+    <script type="text/javascript" th:src="@{/js/csCenter.js}"></script>
+
     <th:block layout:fragment="script"></th:block>
     <th:block layout:fragment="css"></th:block>
     <script>
@@ -75,8 +78,6 @@
             weatherRun(longitude, latitude);
         });
 
-
-
         function pg(num){
             switch (num){
                 case 1:
@@ -102,10 +103,13 @@
                 case 3:
                     $.ajax({
                         type:'GET',
-                        url: 'invert',
+                        url: 'inverter',
                         success: function (data){
                             document.getElementById('contents').innerHTML = data;
-
+                            openBtn();
+                            chart2Draw();
+                            chart21Draw();
+                            eachInverterDraw();
                         }
                     });
                 break;
@@ -204,10 +208,10 @@
                 case 13:
                     $.ajax({
                         type:'GET',
-                        url: 'ppSetting',
+                        url: 'csCenter',
                         success: function (data){
                             document.getElementById('contents').innerHTML = data;
-
+                            csCenter1Start();
                         }
                     });
                     break;
