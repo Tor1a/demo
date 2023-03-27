@@ -190,6 +190,7 @@
                         type:'GET',
                         url: 'userSetting',
                         success: function (data){
+							console.log("");
                             document.getElementById('contents').innerHTML = data;
                             userDatagrid();
                         }
