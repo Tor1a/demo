@@ -12,7 +12,7 @@
 		<div class="search_wrap">
 			<p>
 				<span class="search_tit">장비종류</span>
-				<select name="type" id="TypeANA" onchange="alarm2TypeChange()" class="common_select">
+				<select name="menu09_type" id="menu09_TypeANA" onchange="alarm2TypeChange()" class="common_select">
 					<option value="">전체</option>
 					<option value="1">접속함</option>
 					<option value="2">ACB</option>
@@ -23,13 +23,13 @@
 			</p>
 			<p>
 				<span class="search_tit">알람종류</span>
-				<select id="equipType" name="equipType" onchange="alarm2Serch()" class="common_select">
+				<select id="menu09_equipType" name="menu09_equipType" onchange="alarm2Serch()" class="common_select">
 					<option value="">전체</option>
 					<option value=""></option>
 				</select>
 			</p>
 			<p>
-				<select name="aUse" onchange="alarm2Serch()" class="common_select">
+				<select name="menu09_aUse" onchange="alarm2Serch()" class="common_select">
 					<option value="">사용여부 : 전체</option>
 					<option value="Y">사용여부 : Y</option>
 					<option value="N">사용여부 : N</option>
@@ -37,19 +37,27 @@
 			</p>
 			<p>
 				<span class="search_tit">기간</span>
+				<!--
 				<input class="common_date" type="date" id="startDay" onblur="alarm2Serch()">
 				<span>~</span>
 				<input class="common_date" type="date" id="endDay" onblur="alarm2Serch()">
+				-->
+				<span>
+					<span id="alarm2range" class="calendar_select">
+						<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+						<span class="common_date"></span>
+					</span>
+				</span>
 			</p>
 		</div> <!-- search_wrapEnd -->
 		<div class="chart_wrap">
 			<p class="chart_tit">알람 발생 빈도 TOP10</p>
 			<div class="chart_container">
-				<div id="alarm2Chart"></div>
+				<div id="menu09_alarm2Chart"></div>
 			</div>
 		</div> <!-- chart_wrapEnd -->
 		<div class="andTtable_wrap ">
-			<div id="alarm2Grid"></div>
+			<div id="menu09_alarm2Grid"></div>
 		</div> <!-- table_wrapEnd -->
 	</div> <!-- cont_mainEnd -->
 </div> <!-- contents_wrapEnd -->

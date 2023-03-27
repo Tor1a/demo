@@ -12,32 +12,45 @@
 		<div class="search_wrap">
 			<p>
 				<span class="search_tit">장비종류</span>
-				<select name="type" onchange="alarmSerch()" class="common_select">
+				<select name="menu07_type" onchange="alarmSerch()" class="common_select">
 					<option value="">전체</option>
 					<option value=""></option>
 				</select>
 			</p>
 			<p>
 				<span class="search_tit">알람구분</span>
-				<select name="aEv" onchange="alarmSerch()" class="common_select">
+				<select name="menu07_aEv" onchange="alarmSerch()" class="common_select">
 					<option value="">전체</option>
 					<option value=""></option>
 				</select>
 			</p>
 			<p>
 				<span class="search_tit">기간</span>
-				<input class="common_date" type="date" id="startDay" nblur="alarmSerch()">
+				<!--
+				<input class="common_date" type="date" id="menu07_startDay" nblur="alarmSerch()">
 				<span>~</span>
-				<input class="common_date" type="date" id="endDay" onblur="alarmSerch()">
+				<input class="common_date" type="date" id="menu07_endDay" onblur="alarmSerch()">
+				-->
+				<span>
+					<span id="alarm1range" class="calendar_select">
+						<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+						<span class="common_date"></span>
+					</span>
+				</span>
 			</p>
 			<ul class="btn_form">
-				<li><button id="alarmAll" onclick="alarmCheckOnClick(this.id)" class="commom_btn" >전체</button></li>
-				<li><button id="alarmCancel" onclick="alarmCheckOnClick(this.id)" class="commom_btn">헤제</button></li>
-				<li><button id="alarmStart" onclick="alarmCheckOnClick(this.id)" class="commom_btn">발생</button></li>
+				<li><button id="menu07_alarmAll" style="color: blue;" onclick="alarmCheckOnClick(this.id)" class="commom_btn" >전체</button></li>
+				<li><button id="menu07_alarmCancel" onclick="alarmCheckOnClick(this.id)" class="commom_btn">헤제</button></li>
+				<li><button id="menu07_alarmStart" onclick="alarmCheckOnClick(this.id)" class="commom_btn">발생</button></li>
 			</ul>
+				<select name="menu07_aT" onchange="alarmSerch()" class="common_select" style="display: none;">
+					<option value="">전체</option>
+					<option value="alarmCancel">해제</option>
+					<option value="alarmStart">발생</option>
+				</select>
 		</div> <!-- search_wrapEnd -->
 		<div class="table_wrap">
-			<div id="alarm1Grid"></div>
+			<div id="menu07_alarm1Grid"></div>
 		</div> <!-- table_wrapEnd -->
 	</div> <!-- cont_mainEnd -->
 </div> <!-- contents_wrapEnd -->

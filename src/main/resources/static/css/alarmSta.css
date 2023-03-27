@@ -1,0 +1,27 @@
+	.dx-datagrid-table{
+		display:flex;
+		display: -webkit-box;
+		display: -ms-flexbox;
+		overflow-x: auto;
+		overflow-y: hidden;
+	}
+	.dx-datagrid-table tbody{
+		display:flex
+	}
+	.dx-data-row td{
+		display:block
+	}
+
+
+
+
+
+	.dx-datagrid-table tbody{
+		display:flex
+	}
+	.dx-data-row td{
+		width: 100px;
+		height: 40px;
+		border: 1px solid black;
+		display:block
+	}

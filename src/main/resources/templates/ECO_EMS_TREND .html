@@ -25,45 +25,58 @@
 		<div class="search_wrap">
 			<p>
 				<span class="search_tit">장비종류</span>
-				<select name="type" onchange="selectButtonTrend()" class="common_select">
+				<select name="menu05_type" class="common_select">
 					<option value="">전체</option>
-					<option value=""></option>
+					<option value="conbox"></option>
+					<option value="invert"></option>
 				</select>
 			</p>
 			<p>
 				<span class="search_tit">장비구분</span>
-				<select name="div" onchange="selectButtonTrend()" class="common_select">
+				<select name="menu05_div" class="common_select">
 					<option value="">전체</option>
-					<option value=""></option>
+					<option value="1">a</option>
 				</select>
 			</p>
 			<p>
 				<span class="search_tit">트렌드</span>
-				<select name="daily" onchange="selectButtonTrend()" class="common_select">
-					<option value="">전체</option>
-					<option value=""></option>
+				<select name="menu05_daily" class="common_select">
+					<option value="d">일일</option>
+					<option value="m">월간</option>
+					<option value="y">연간</option>
 				</select>
 			</p>
 			<p>
 				<span class="search_tit">자료형태</span>
-				<select name="unit" onchange="selectButtonTrend()" class="common_select">
-					<option value="">전체</option>
-					<option value=""></option>
+				<select name="menu05_unit" class="common_select">
+					<option value="60">1시간</option>
+					<option value="30">30분</option>
+					<option value="10">10분</option>
+					<option value="5">5분</option>
+					<option value="1">RawData</option>
 				</select>
 			</p>
 			<p>
 				<span class="search_tit">기간</span>
-				<input class="common_date" type="date" id="trendStartDay" onblur="selectButtonTrend()">
+				<!--
+				<input class="common_date" type="date" id="menu05_trendStartDay" onblur="selectButtonTrend()">
 				<span>~</span>
-				<input class="common_date" type="date" id="trendEndDay" onblur="selectButtonTrend()">
+				<input class="common_date" type="date" id="menu05_trendEndDay" onblur="selectButtonTrend()">
+				 -->
+				<span>
+					<span id="trendrange" class="calendar_select">
+						<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+						<span class="common_date"></span>
+					</span>
+				</span>
 			</p>
 		</div> <!-- search_wrapEnd -->
 		<div class="chart_wrap">
 			<p class="chart_tit">발전량 (kWh)</p>
 			<div class="onechart_container">
-				<div id="trendChart"></div>
+				<div id="menu05_trendChart"></div>
 			</div>
 		</div> <!-- chart_wrapEnd -->
 	</div> <!-- cont_mainEnd -->
-</div> <!-- contents_wrapEnd -->
+</div> <!-- menu05_contents_wrapEnd -->
 </html>
